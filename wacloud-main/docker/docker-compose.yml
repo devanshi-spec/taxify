@@ -1,0 +1,122 @@
+# Docker Compose for WhatsApp CRM Development Environment
+# Includes: Evolution API, PostgreSQL, Redis
+
+version: '3.8'
+
+services:
+  # Evolution API - WhatsApp Connection Manager
+  evolution-api:
+    image: atendai/evolution-api:latest
+    container_name: evolution-api
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      # Server Configuration
+      - SERVER_URL=http://localhost:8080
+      - CORS_ORIGIN=*
+      - CORS_METHODS=POST,GET,PUT,DELETE
+      - CORS_CREDENTIALS=true
+
+      # Authentication
+      - AUTHENTICATION_TYPE=apikey
+      - AUTHENTICATION_API_KEY=${EVOLUTION_API_KEY:-your-api-key-here}
+      - AUTHENTICATION_EXPOSE_IN_FETCH_INSTANCES=true
+
+      # Database
+      - DATABASE_ENABLED=true
+      - DATABASE_PROVIDER=postgresql
+      - DATABASE_CONNECTION_URI=postgresql://postgres:postgres@postgres:5432/evolution
+      - DATABASE_CONNECTION_CLIENT_NAME=evolution_api
+
+      # Redis
+      - CACHE_REDIS_ENABLED=true
+      - CACHE_REDIS_URI=redis://redis:6379
+      - CACHE_REDIS_PREFIX_KEY=evolution
+      - CACHE_LOCAL_ENABLED=false
+
+      # RabbitMQ (optional, for scaling)
+      - RABBITMQ_ENABLED=false
+
+      # Webhook Configuration
+      - WEBHOOK_GLOBAL_URL=${WEBHOOK_GLOBAL_URL:-}
+      - WEBHOOK_GLOBAL_ENABLED=false
+      - WEBHOOK_GLOBAL_WEBHOOK_BY_EVENTS=false
+
+      # WhatsApp Cloud API
+      - WA_BUSINESS_TOKEN_WEBHOOK=${WA_BUSINESS_TOKEN_WEBHOOK:-}
+      - WA_BUSINESS_URL=https://graph.facebook.com
+      - WA_BUSINESS_VERSION=v18.0
+
+      # Instance Configuration
+      - DEL_INSTANCE=false
+      - DEL_TEMP_INSTANCES=true
+      - CONFIG_SESSION_PHONE_CLIENT=WhatsApp CRM
+      - CONFIG_SESSION_PHONE_NAME=Chrome
+
+      # QR Code
+      - QRCODE_LIMIT=30
+      - QRCODE_COLOR=#198754
+
+      # Logging
+      - LOG_LEVEL=ERROR,WARN,DEBUG,INFO,LOG,VERBOSE,DARK,WEBHOOKS
+      - LOG_COLOR=true
+      - LOG_BAILEYS=error
+
+      # Storage
+      - STORE_MESSAGES=true
+      - STORE_MESSAGE_UP=true
+      - STORE_CONTACTS=true
+      - STORE_CHATS=true
+      - CLEAN_STORE_CLEANING_INTERVAL=7200
+      - CLEAN_STORE_MESSAGES=true
+      - CLEAN_STORE_MESSAGE_UP=true
+      - CLEAN_STORE_CONTACTS=true
+      - CLEAN_STORE_CHATS=true
+
+    volumes:
+      - evolution_instances:/evolution/instances
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - whatsapp-crm-network
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: whatsapp-crm-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=whatsapp_crm
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    networks:
+      - whatsapp-crm-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: whatsapp-crm-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - whatsapp-crm-network
+
+volumes:
+  evolution_instances:
+  postgres_data:
+  redis_data:
+
+networks:
+  whatsapp-crm-network:
+    driver: bridge

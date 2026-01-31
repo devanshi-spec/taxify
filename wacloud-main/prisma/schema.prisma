@@ -1,0 +1,1434 @@
+// WhatsApp CRM SaaS - Database Schema
+// Using Supabase PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ============================================
+// ORGANIZATIONS & USERS
+// ============================================
+
+model Organization {
+  id               String   @id @default(cuid())
+  name             String
+  slug             String   @unique
+  plan             Plan     @default(FREE)
+  billingEmail     String?  @map("billing_email")
+  stripeCustomerId String?  @map("stripe_customer_id")
+
+  // Limits based on plan
+  maxUsers    Int @default(1) @map("max_users")
+  maxChannels Int @default(1) @map("max_channels")
+  maxContacts Int @default(500) @map("max_contacts")
+  maxMessages Int @default(1000) @map("max_messages_per_month")
+
+  // AI API Keys (BYOK - Bring Your Own Key)
+  useOwnAiKeys      Boolean @default(false) @map("use_own_ai_keys") // If true, use org keys instead of platform keys
+  openaiApiKey      String? @map("openai_api_key") // Encrypted
+  anthropicApiKey   String? @map("anthropic_api_key") // Encrypted
+  geminiApiKey      String? @map("gemini_api_key") // Encrypted
+  aiModel           String  @default("gpt-4o-mini") @map("ai_model") // Default model to use
+  aiTemperature     Float   @default(0.7) @map("ai_temperature") // AI creativity setting
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  users          User[]
+  channels       Channel[]
+  contacts       Contact[]
+  conversations  Conversation[]
+  campaigns      Campaign[]
+  chatbots       Chatbot[]
+  media          Media[]
+  broadcastLists BroadcastList[]
+  aiUsageLogs    AIUsageLog[]
+  dripSequences  DripSequence[]
+  products       Product[]
+  knowledgeDocuments KnowledgeDocument[]
+  
+  // SaaS Relations
+  invitations    Invitation[]
+  subscription   Subscription?
+  monthlyUsage   MonthlyUsage[]
+  featureFlags   FeatureFlag[]
+  automationRules AutomationRule[]
+
+  @@map("organizations")
+}
+
+model User {
+  id             String    @id @default(cuid())
+  email          String    @unique
+  name           String?
+  avatarUrl      String?   @map("avatar_url")
+  supabaseUserId String    @unique @map("supabase_user_id")
+
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  role     UserRole @default(MEMBER)
+  isActive Boolean  @default(true) @map("is_active")
+  isSuperAdmin Boolean @default(false) @map("is_super_admin")
+
+  lastLoginAt DateTime? @map("last_login_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  // CRM Relations
+  assignedDeals      Deal[]     @relation("DealAssignee")
+  assignedActivities Activity[] @relation("ActivityAssignee")
+  createdActivities  Activity[] @relation("ActivityCreator")
+  
+  // SaaS Relations
+  sentInvitations    Invitation[] @relation("InvitedBy")
+
+  @@map("users")
+}
+
+enum Plan {
+  FREE
+  STARTER
+  PROFESSIONAL
+  ENTERPRISE
+}
+
+enum UserRole {
+  OWNER
+  ADMIN
+  MEMBER
+  VIEWER
+}
+
+// ============================================
+// WHATSAPP CHANNELS
+// ============================================
+
+model Channel {
+  id            String  @id @default(cuid())
+  name          String
+  phoneNumber   String? @map("phone_number")
+  phoneNumberId String? @map("phone_number_id")
+  wabaId        String? @map("waba_id")
+
+  // Evolution API specific
+  evolutionInstance String? @map("evolution_instance")
+  evolutionApiKey   String? @map("evolution_api_key")
+
+  connectionType ConnectionType @default(CLOUD_API) @map("connection_type")
+  status         ChannelStatus  @default(DISCONNECTED)
+
+  // Webhook configuration
+  webhookUrl    String? @map("webhook_url")
+  webhookSecret String? @map("webhook_secret")
+
+  // Settings
+  businessProfile Json? @map("business_profile")
+  settings        Json?
+
+  // Platform Support
+  platform        ChannelPlatform @default(WHATSAPP)
+  instagramId     String?         @map("instagram_id")
+  accessToken     String?         @map("access_token") // For Instagram/Facebook Graph API
+
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  contacts      Contact[]
+  conversations Conversation[]
+  campaigns     Campaign[]
+  templates     MessageTemplate[]
+  dripSequences DripSequence[]
+
+  @@map("channels")
+}
+
+enum ConnectionType {
+  CLOUD_API
+  EVOLUTION_API
+}
+
+enum ChannelPlatform {
+  WHATSAPP
+  INSTAGRAM
+}
+
+enum ChannelStatus {
+  CONNECTED
+  DISCONNECTED
+  PENDING
+  ERROR
+}
+
+// ============================================
+// CONTACTS
+// ============================================
+
+model Contact {
+  id          String  @id @default(cuid())
+  phoneNumber String  @map("phone_number")
+  name        String?
+  email       String?
+  avatarUrl   String? @map("avatar_url")
+
+  // WhatsApp profile info
+  waId        String? @map("wa_id")
+  profileName String? @map("profile_name")
+
+  // CRM fields
+  tags         String[]
+  customFields Json?    @map("custom_fields")
+  notes        String?
+
+  // Segmentation
+  segment   String?
+  leadScore Int          @default(0) @map("lead_score")
+  stage     ContactStage @default(NEW)
+
+  // Opt-in status
+  isOptedIn  Boolean   @default(true) @map("is_opted_in")
+  optedInAt  DateTime? @map("opted_in_at")
+  optedOutAt DateTime? @map("opted_out_at")
+
+  // Assignment
+  assignedTo String? @map("assigned_to")
+
+  channelId String  @map("channel_id")
+  channel   Channel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+  lastContactedAt DateTime? @map("last_contacted_at")
+
+  // Click-to-WhatsApp Ads Attribution
+  source        String?  @default("organic") // 'organic', 'ctwa', 'api', 'import'
+  ctwaClid      String?  @map("ctwa_clid") // Meta Click ID for CTWA ads
+  adId          String?  @map("ad_id")
+  adSetId       String?  @map("ad_set_id")
+  fbCampaignId  String?  @map("fb_campaign_id")
+  utmSource     String?  @map("utm_source")
+  utmMedium     String?  @map("utm_medium")
+  utmCampaign   String?  @map("utm_campaign")
+  utmContent    String?  @map("utm_content")
+  referrer      String?
+
+  conversations         Conversation[]
+  campaignContacts      CampaignContact[]
+  deals                 Deal[]
+  activities            Activity[]
+  broadcastListContacts BroadcastListContact[]
+  dripEnrollments       DripEnrollment[]
+
+  @@unique([phoneNumber, channelId])
+  @@map("contacts")
+}
+
+enum ContactStage {
+  NEW
+  LEAD
+  QUALIFIED
+  CUSTOMER
+  CHURNED
+}
+
+// ============================================
+// CONVERSATIONS & MESSAGES
+// ============================================
+
+model Conversation {
+  id String @id @default(cuid())
+
+  contactId String  @map("contact_id")
+  contact   Contact @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  channelId String  @map("channel_id")
+  channel   Channel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  status   ConversationStatus @default(OPEN)
+  priority Priority           @default(NORMAL)
+
+  // Assignment
+  assignedTo String? @map("assigned_to")
+
+  // Tracking
+  unreadCount        Int       @default(0) @map("unread_count")
+  lastMessageAt      DateTime? @map("last_message_at")
+  lastMessagePreview String?   @map("last_message_preview")
+
+  // AI/Bot status
+  isAiEnabled Boolean @default(false) @map("is_ai_enabled")
+  aiSessionId String? @map("ai_session_id") // Stores selected chatbot ID
+  flowState   Json?   @map("flow_state") // Stores flow execution state
+
+  // Tags and labels
+  tags String[]
+
+  closedAt DateTime? @map("closed_at")
+  closedBy String?   @map("closed_by")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  messages    Message[]
+  assignments ConversationAssignment[]
+
+  @@map("conversations")
+}
+
+enum ConversationStatus {
+  OPEN
+  PENDING
+  RESOLVED
+  CLOSED
+}
+
+enum Priority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+}
+
+model Message {
+  id String @id @default(cuid())
+
+  conversationId String       @map("conversation_id")
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  // Message identifiers
+  waMessageId String? @unique @map("wa_message_id")
+
+  // Direction
+  direction MessageDirection
+
+  // Sender info
+  senderId   String? @map("sender_id")
+  senderName String? @map("sender_name")
+
+  // Content
+  type          MessageType
+  content       String?
+  mediaUrl      String?     @map("media_url")
+  mediaType     String?     @map("media_type")
+  mediaMimeType String?     @map("media_mime_type")
+  mediaFileName String?     @map("media_file_name")
+  mediaCaption  String?     @map("media_caption")
+
+  // Template message fields
+  templateId     String? @map("template_id")
+  templateName   String? @map("template_name")
+  templateParams Json?   @map("template_params")
+
+  // Interactive message fields
+  interactiveType String? @map("interactive_type")
+  interactiveData Json?   @map("interactive_data")
+
+  // Location message
+  latitude        Float?
+  longitude       Float?
+  locationName    String? @map("location_name")
+  locationAddress String? @map("location_address")
+
+  // Reaction
+  reaction  String?
+  reactedTo String? @map("reacted_to")
+
+  // Status tracking
+  status          MessageStatus @default(PENDING)
+  statusUpdatedAt DateTime?     @map("status_updated_at")
+  errorCode       String?       @map("error_code")
+  errorMessage    String?       @map("error_message")
+
+  // AI metadata
+  isAiGenerated Boolean @default(false) @map("is_ai_generated")
+  aiProvider    String? @map("ai_provider")
+  aiModel       String? @map("ai_model")
+
+  // Timestamps
+  sentAt      DateTime? @map("sent_at")
+  deliveredAt DateTime? @map("delivered_at")
+  readAt      DateTime? @map("read_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@index([conversationId, createdAt])
+  @@map("messages")
+}
+
+enum MessageDirection {
+  INBOUND
+  OUTBOUND
+}
+
+enum MessageType {
+  TEXT
+  IMAGE
+  VIDEO
+  AUDIO
+  DOCUMENT
+  STICKER
+  LOCATION
+  CONTACT
+  TEMPLATE
+  INTERACTIVE
+  REACTION
+  UNKNOWN
+}
+
+enum MessageStatus {
+  PENDING
+  SENT
+  DELIVERED
+  READ
+  FAILED
+}
+
+// ============================================
+// MESSAGE TEMPLATES
+// ============================================
+
+model MessageTemplate {
+  id String @id @default(cuid())
+
+  name     String
+  language String           @default("en")
+  category TemplateCategory
+
+  // Template structure
+  headerType     TemplateComponentType? @map("header_type")
+  headerContent  String?                @map("header_content")
+  headerMediaUrl String?                @map("header_media_url")
+
+  bodyText      String   @map("body_text")
+  bodyVariables String[] @map("body_variables")
+
+  footerText String? @map("footer_text")
+
+  // Buttons
+  buttons Json?
+
+  // Meta template fields
+  waTemplateId    String?        @map("wa_template_id")
+  status          TemplateStatus @default(DRAFT)
+  rejectionReason String?        @map("rejection_reason")
+
+  channelId String  @map("channel_id")
+  channel   Channel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([name, language, channelId])
+  @@map("message_templates")
+}
+
+enum TemplateCategory {
+  MARKETING
+  UTILITY
+  AUTHENTICATION
+}
+
+enum TemplateComponentType {
+  TEXT
+  IMAGE
+  VIDEO
+  DOCUMENT
+}
+
+enum TemplateStatus {
+  DRAFT
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+// ============================================
+// CAMPAIGNS
+// ============================================
+
+model Campaign {
+  id          String @id @default(cuid())
+  name        String
+  description String?
+
+  type   CampaignType
+  status CampaignStatus @default(DRAFT)
+
+  // Targeting
+  targetSegment String?  @map("target_segment")
+  targetTags    String[] @map("target_tags")
+  targetFilters Json?    @map("target_filters")
+
+  // Content
+  messageType    MessageType @map("message_type")
+  messageContent String?     @map("message_content")
+  templateId     String?     @map("template_id")
+  templateParams Json?       @map("template_params")
+  mediaUrl       String?     @map("media_url")
+
+  // Scheduling
+  scheduledAt DateTime? @map("scheduled_at")
+  startedAt   DateTime? @map("started_at")
+  completedAt DateTime? @map("completed_at")
+
+  // Stats
+  totalRecipients Int @default(0) @map("total_recipients")
+  sentCount       Int @default(0) @map("sent_count")
+  deliveredCount  Int @default(0) @map("delivered_count")
+  readCount       Int @default(0) @map("read_count")
+  failedCount     Int @default(0) @map("failed_count")
+  replyCount      Int @default(0) @map("reply_count")
+
+  // Rate limiting
+  messagesPerSecond Int @default(1) @map("messages_per_second")
+
+  channelId String  @map("channel_id")
+  channel   Channel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  createdBy String   @map("created_by")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  contacts CampaignContact[]
+  
+  // Drip campaign relation
+  dripSequenceId String?       @map("drip_sequence_id")
+  dripSequence   DripSequence? @relation(fields: [dripSequenceId], references: [id], onDelete: SetNull)
+  dripStepOrder  Int?          @map("drip_step_order") // Order in the sequence
+  dripDelayMinutes Int?          @map("drip_delay_minutes")
+
+  @@map("campaigns")
+}
+
+enum CampaignType {
+  BROADCAST
+  DRIP
+  TRIGGERED
+}
+
+enum CampaignStatus {
+  DRAFT
+  SCHEDULED
+  RUNNING
+  PAUSED
+  COMPLETED
+  CANCELLED
+}
+
+model CampaignContact {
+  id String @id @default(cuid())
+
+  campaignId String   @map("campaign_id")
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  contactId String  @map("contact_id")
+  contact   Contact @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  status    CampaignContactStatus @default(PENDING)
+  messageId String?               @map("message_id")
+
+  sentAt       DateTime? @map("sent_at")
+  deliveredAt  DateTime? @map("delivered_at")
+  readAt       DateTime? @map("read_at")
+  repliedAt    DateTime? @map("replied_at")
+  failedAt     DateTime? @map("failed_at")
+  errorMessage String?   @map("error_message")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([campaignId, contactId])
+  @@map("campaign_contacts")
+}
+
+enum CampaignContactStatus {
+  PENDING
+  SENT
+  DELIVERED
+  READ
+  REPLIED
+  FAILED
+  SKIPPED
+}
+
+// ============================================
+// DRIP CAMPAIGNS (Automated Sequences)
+// ============================================
+
+model DripSequence {
+  id          String  @id @default(cuid())
+  name        String
+  description String?
+
+  // Sequence configuration
+  isActive Boolean @default(false) @map("is_active")
+  
+  // Entry conditions
+  entryTrigger  String   @map("entry_trigger") // 'tag_added', 'stage_changed', 'manual', 'form_submitted'
+  entryFilters  Json?    @map("entry_filters")
+  
+  // Exit conditions
+  exitOnReply   Boolean  @default(true) @map("exit_on_reply")
+  exitKeywords  String[] @map("exit_keywords")
+  
+  // Stats
+  totalEnrolled   Int @default(0) @map("total_enrolled")
+  totalCompleted  Int @default(0) @map("total_completed")
+  totalExited     Int @default(0) @map("total_exited")
+
+  channelId String  @map("channel_id")
+  channel   Channel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  campaigns   Campaign[]
+  enrollments DripEnrollment[]
+
+  @@map("drip_sequences")
+}
+
+// Track individual contact enrollment in drip sequences
+model DripEnrollment {
+  id String @id @default(cuid())
+
+  sequenceId String       @map("sequence_id")
+  sequence   DripSequence @relation(fields: [sequenceId], references: [id], onDelete: Cascade)
+
+  contactId String  @map("contact_id")
+  contact   Contact @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  // Progress tracking
+  currentStep     Int              @default(0) @map("current_step")
+  status          DripEnrollmentStatus @default(ACTIVE)
+  
+  // Timing
+  enrolledAt  DateTime  @map("enrolled_at")
+  completedAt DateTime? @map("completed_at")
+  exitedAt    DateTime? @map("exited_at")
+  exitReason  String?   @map("exit_reason")
+  
+  // Next scheduled message
+  nextMessageAt DateTime? @map("next_message_at")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([sequenceId, contactId])
+  @@index([status, nextMessageAt])
+  @@map("drip_enrollments")
+}
+
+enum DripEnrollmentStatus {
+  ACTIVE
+  PAUSED
+  COMPLETED
+  EXITED
+}
+
+// ============================================
+// CHATBOTS
+// ============================================
+
+model Chatbot {
+  id          String  @id @default(cuid())
+  name        String
+  description String?
+
+  isActive Boolean @default(false) @map("is_active")
+
+  // AI configuration
+  aiProvider   String @default("openai") @map("ai_provider")
+  aiModel      String @default("gpt-4o") @map("ai_model")
+  systemPrompt String? @map("system_prompt")
+  temperature  Float  @default(0.7)
+  maxTokens    Int    @default(500) @map("max_tokens")
+
+  // Flow configuration
+  flowType ChatbotFlowType @default(AI) @map("flow_type")
+  flowData Json?           @map("flow_data")
+
+  // Triggers
+  triggerKeywords          String[] @map("trigger_keywords")
+  triggerOnNewConversation Boolean  @default(false) @map("trigger_on_new_conversation")
+
+  // Handoff settings
+  handoffKeywords String[] @map("handoff_keywords")
+  handoffMessage  String?  @map("handoff_message")
+
+  // Business hours
+  respectBusinessHours Boolean @default(false) @map("respect_business_hours")
+  businessHours        Json?   @map("business_hours")
+  outOfHoursMessage    String? @map("out_of_hours_message")
+
+  // Knowledge base
+  knowledgeBase Json? @map("knowledge_base")
+
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("chatbots")
+}
+
+enum ChatbotFlowType {
+  AI
+  FLOW
+  HYBRID
+}
+
+// ============================================
+// MEDIA
+// ============================================
+
+model Media {
+  id String @id @default(cuid())
+
+  filename     String
+  originalName String @map("original_name")
+  mimeType     String @map("mime_type")
+  size         Int
+
+  url          String
+  thumbnailUrl String? @map("thumbnail_url")
+
+  // Storage info
+  storageProvider String @default("supabase") @map("storage_provider")
+  storagePath     String @map("storage_path")
+
+  // Metadata
+  width    Int?
+  height   Int?
+  duration Int?
+
+  // Usage tracking
+  usageCount Int @default(0) @map("usage_count")
+
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  uploadedBy String   @map("uploaded_by")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@map("media")
+}
+
+// ============================================
+// AUDIT LOG
+// ============================================
+
+model AuditLog {
+  id String @id @default(cuid())
+
+  organizationId String @map("organization_id")
+
+  userId     String  @map("user_id")
+  action     String
+  entityType String  @map("entity_type")
+  entityId   String? @map("entity_id")
+
+  oldValues Json? @map("old_values")
+  newValues Json? @map("new_values")
+  metadata  Json? // Additional context data
+
+  ipAddress String? @map("ip_address")
+  userAgent String? @map("user_agent")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([userId, createdAt])
+  @@index([entityType, entityId])
+  @@index([organizationId, createdAt])
+  @@map("audit_logs")
+}
+
+// ============================================
+// QUICK REPLIES
+// ============================================
+
+model QuickReply {
+  id       String  @id @default(cuid())
+  title    String
+  shortcut String  // e.g., "/thanks"
+  content  String  @db.Text
+  category String?
+  tags     String[]
+
+  usageCount Int     @default(0) @map("usage_count")
+  isGlobal   Boolean @default(false) @map("is_global")
+
+  createdBy      String   @map("created_by")
+  organizationId String   @map("organization_id")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@unique([shortcut, organizationId])
+  @@map("quick_replies")
+}
+
+// ============================================
+// CONTACT IMPORT
+// ============================================
+
+model ContactImport {
+  id           String       @id @default(cuid())
+  fileName     String       @map("file_name")
+  originalName String       @map("original_name")
+  status       ImportStatus @default(PENDING)
+
+  totalRows     Int @default(0) @map("total_rows")
+  processedRows Int @default(0) @map("processed_rows")
+  successCount  Int @default(0) @map("success_count")
+  errorCount    Int @default(0) @map("error_count")
+
+  fieldMapping Json  @map("field_mapping")
+  errors       Json? // Array of { row, field, error }
+
+  channelId      String   @map("channel_id")
+  organizationId String   @map("organization_id")
+  createdBy      String   @map("created_by")
+
+  startedAt   DateTime? @map("started_at")
+  completedAt DateTime? @map("completed_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@map("contact_imports")
+}
+
+enum ImportStatus {
+  PENDING
+  MAPPING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+// ============================================
+// CRM - PIPELINES & DEALS
+// ============================================
+
+model Pipeline {
+  id        String  @id @default(cuid())
+  name      String
+  stages    Json    // Array of { id, name, order, color, probability }
+  isDefault Boolean @default(false) @map("is_default")
+
+  organizationId String   @map("organization_id")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  deals Deal[]
+
+  @@map("pipelines")
+}
+
+model Deal {
+  id          String  @id @default(cuid())
+  title       String
+  value       Float   @default(0)
+  currency    String  @default("USD")
+  stage       String  // Stage ID from pipeline.stages
+  probability Int     @default(0)
+
+  expectedCloseDate DateTime? @map("expected_close_date")
+  closedAt          DateTime? @map("closed_at")
+  closedReason      String?   @map("closed_reason") // won, lost, abandoned
+
+  contactId String  @map("contact_id")
+  contact   Contact @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  pipelineId String   @map("pipeline_id")
+  pipeline   Pipeline @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
+
+  assignedTo     String?  @map("assigned_to")
+  assignedUser   User?    @relation("DealAssignee", fields: [assignedTo], references: [id], onDelete: SetNull)
+  organizationId String   @map("organization_id")
+  createdBy      String   @map("created_by")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  // AI insights and custom data
+  customFields Json? @map("custom_fields")
+
+  activities Activity[]
+  dealProducts DealProduct[]
+
+  @@index([pipelineId, stage])
+  @@index([contactId])
+  @@index([assignedTo])
+  @@map("deals")
+}
+
+model Activity {
+  id          String       @id @default(cuid())
+  type        ActivityType
+  title       String
+  description String?      @db.Text
+
+  dueDate     DateTime? @map("due_date")
+  completedAt DateTime? @map("completed_at")
+
+  contactId String?  @map("contact_id")
+  contact   Contact? @relation(fields: [contactId], references: [id], onDelete: SetNull)
+
+  dealId String? @map("deal_id")
+  deal   Deal?   @relation(fields: [dealId], references: [id], onDelete: SetNull)
+
+  assignedTo     String?  @map("assigned_to")
+  assignedUser   User?    @relation("ActivityAssignee", fields: [assignedTo], references: [id], onDelete: SetNull)
+  createdBy      String   @map("created_by")
+  creator        User     @relation("ActivityCreator", fields: [createdBy], references: [id], onDelete: Cascade)
+  organizationId String   @map("organization_id")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@index([contactId, createdAt])
+  @@index([dealId])
+  @@index([assignedTo])
+  @@map("activities")
+}
+
+enum ActivityType {
+  CALL
+  EMAIL
+  MEETING
+  TASK
+  NOTE
+  WHATSAPP
+}
+
+// ============================================
+// MULTI-AGENT TEAM INBOX
+// ============================================
+
+model AgentStatus {
+  id     String              @id @default(cuid())
+  userId String              @unique @map("user_id")
+  status AgentPresenceStatus @default(OFFLINE)
+
+  maxConcurrentChats Int @default(5) @map("max_concurrent_chats")
+  currentLoad        Int @default(0) @map("current_load")
+
+  skills      String[]
+  languages   String[]
+  lastActiveAt DateTime? @map("last_active_at")
+
+  organizationId String   @map("organization_id")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@index([organizationId, status])
+  @@map("agent_statuses")
+}
+
+enum AgentPresenceStatus {
+  ONLINE
+  AWAY
+  BUSY
+  OFFLINE
+}
+
+model ConversationAssignment {
+  id             String       @id @default(cuid())
+  conversationId String       @map("conversation_id")
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  assignedTo String           @map("assigned_to")
+  assignedBy String?          @map("assigned_by")
+  reason     AssignmentReason @default(MANUAL)
+
+  assignedAt   DateTime  @default(now()) @map("assigned_at")
+  unassignedAt DateTime? @map("unassigned_at")
+
+  // Performance tracking
+  firstResponseTime Int? @map("first_response_time") // seconds
+  resolutionTime    Int? @map("resolution_time") // seconds
+
+  @@index([assignedTo, unassignedAt])
+  @@index([conversationId])
+  @@map("conversation_assignments")
+}
+
+enum AssignmentReason {
+  MANUAL
+  AUTO_ROUND_ROBIN
+  AUTO_LEAST_BUSY
+  AUTO_SKILL_BASED
+  TRANSFER
+}
+
+// ============================================
+// BROADCAST LISTS
+// ============================================
+
+model BroadcastList {
+  id             String   @id @default(cuid())
+  name           String
+  description    String?
+  organizationId String   @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  contacts BroadcastListContact[]
+
+  @@index([organizationId])
+  @@map("broadcast_lists")
+}
+
+model BroadcastListContact {
+  id              String        @id @default(cuid())
+  broadcastListId String        @map("broadcast_list_id")
+  broadcastList   BroadcastList @relation(fields: [broadcastListId], references: [id], onDelete: Cascade)
+
+  contactId String  @map("contact_id")
+  contact   Contact @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  addedAt DateTime @default(now()) @map("added_at")
+
+  @@unique([broadcastListId, contactId])
+  @@index([broadcastListId])
+  @@index([contactId])
+  @@map("broadcast_list_contacts")
+}
+
+// ============================================
+// AI USAGE TRACKING
+// ============================================
+
+model AIUsageLog {
+  id             String   @id @default(cuid())
+  organizationId String   @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  userId   String? @map("user_id")
+  provider String
+  model    String
+  
+  promptTokens     Int    @map("prompt_tokens")
+  completionTokens Int    @map("completion_tokens")
+  totalTokens      Int    @map("total_tokens")
+  cost             Float
+  
+  feature String
+  success Boolean
+  latency Int // milliseconds
+  settings        Json?
+
+
+
+  error   String?
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([organizationId, createdAt])
+  @@index([feature])
+  @@map("ai_usage_logs")
+}
+
+
+
+// ============================================
+// AGENT PERFORMANCE TRACKING
+// ============================================
+
+model AgentPerformanceDaily {
+  id String @id @default(cuid())
+
+  userId String @map("user_id")
+  date   DateTime @db.Date
+
+  organizationId String @map("organization_id")
+
+  // Conversation Metrics
+  conversationsAssigned  Int @default(0) @map("conversations_assigned")
+  conversationsResolved  Int @default(0) @map("conversations_resolved")
+  conversationsOpen      Int @default(0) @map("conversations_open")
+
+  // Message Metrics  
+  messagesSent     Int @default(0) @map("messages_sent")
+  messagesReceived Int @default(0) @map("messages_received")
+
+  // Time Metrics (in seconds)
+  totalResponseTime     Int @default(0) @map("total_response_time")
+  avgResponseTime       Int @default(0) @map("avg_response_time")
+  firstResponseTime     Int @default(0) @map("first_response_time")
+  avgFirstResponseTime  Int @default(0) @map("avg_first_response_time")
+  totalHandleTime       Int @default(0) @map("total_handle_time")
+  avgHandleTime         Int @default(0) @map("avg_handle_time")
+
+  // Quality Metrics
+  csatTotal       Int   @default(0) @map("csat_total")
+  csatCount       Int   @default(0) @map("csat_count")
+  csatAvg         Float @default(0) @map("csat_avg")
+  npsScore        Float? @map("nps_score")
+
+  // Efficiency
+  handoffFromAi   Int @default(0) @map("handoff_from_ai")
+  escalations     Int @default(0) @map("escalations")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([userId, date])
+  @@index([organizationId, date])
+  @@map("agent_performance_daily")
+}
+
+
+
+// ============================================
+// WHATSAPP FLOWS (Interactive Forms)
+// ============================================
+
+model WhatsAppFlow {
+  id String @id @default(cuid())
+
+  name        String
+  description String?
+
+  // Flow configuration
+  flowJson    Json    @map("flow_json") // WhatsApp Flow JSON schema
+  version     String  @default("3.0")
+  
+  // Meta Flow ID (after publishing to WhatsApp)
+  waFlowId    String? @unique @map("wa_flow_id")
+  
+  // Status
+  status      FlowStatus @default(DRAFT)
+  publishedAt DateTime?  @map("published_at")
+  
+  // Categories for organization
+  category    String?
+  tags        String[]
+  
+  // Usage tracking
+  totalSent      Int @default(0) @map("total_sent")
+  totalCompleted Int @default(0) @map("total_completed")
+  
+  organizationId String @map("organization_id")
+  
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  responses FlowResponse[]
+
+  @@index([organizationId])
+  @@index([status])
+  @@map("whatsapp_flows")
+}
+
+enum FlowStatus {
+  DRAFT
+  PUBLISHED
+  DEPRECATED
+}
+
+// Store flow responses from customers
+model FlowResponse {
+  id String @id @default(cuid())
+
+  flowId String       @map("flow_id")
+  flow   WhatsAppFlow @relation(fields: [flowId], references: [id], onDelete: Cascade)
+
+  contactId String? @map("contact_id")
+  
+  // Response data from the flow
+  responseData Json @map("response_data")
+  
+  // Metadata
+  waFlowToken String? @map("wa_flow_token") // WhatsApp flow token
+  completedAt DateTime? @map("completed_at")
+  
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([flowId])
+  @@index([contactId])
+  @@map("flow_responses")
+}
+
+// ============================================
+// CATALOG & PRODUCTS
+// ============================================
+
+model Product {
+  id          String   @id @default(cuid())
+  
+  name        String
+  description String?
+  sku         String?
+  price       Float
+  currency    String   @default("INR")
+  imageUrl    String?  @map("image_url")
+  category    String?
+  tags        String[]
+  quantity    Int      @default(0)
+  isActive    Boolean  @default(true) @map("is_active")
+
+  // For syncing with Meta Catalog
+  waProductId    String? @map("wa_product_id") // Meta Catalog Item ID
+  waCatalogId    String? @map("wa_catalog_id")
+  syncStatus     ProductSyncStatus @default(PENDING) @map("sync_status")
+  lastSyncedAt   DateTime? @map("last_synced_at")
+
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  dealProducts DealProduct[]
+
+  @@unique([organizationId, sku])
+  @@index([organizationId])
+  @@map("products")
+}
+
+model DealProduct {
+  id        String  @id @default(cuid())
+  
+  dealId    String  @map("deal_id")
+  deal      Deal    @relation(fields: [dealId], references: [id], onDelete: Cascade)
+  
+  productId String  @map("product_id")
+  product   Product @relation(fields: [productId], references: [id], onDelete: Restrict) // Don't delete product if used in deals
+  
+  quantity  Int     @default(1)
+  unitPrice Float   @map("unit_price") // Snapshot price
+  
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([dealId, productId])
+  @@map("deal_products")
+}
+
+enum ProductSyncStatus {
+  PENDING
+  SYNCED
+  FAILED
+}
+
+// ============================================
+// SAAS FEATURES
+// ============================================
+
+// Team Invitations
+model Invitation {
+  id             String   @id @default(cuid())
+  email          String
+  role           UserRole
+  token          String   @unique
+  
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  
+  invitedBy      String       @map("invited_by")
+  inviter        User         @relation("InvitedBy", fields: [invitedBy], references: [id])
+  
+  expiresAt      DateTime     @map("expires_at")
+  acceptedAt     DateTime?    @map("accepted_at")
+  acceptedBy     String?      @map("accepted_by")
+  
+  createdAt      DateTime     @default(now()) @map("created_at")
+  
+  @@index([token])
+  @@index([email])
+  @@index([organizationId])
+  @@map("invitations")
+}
+
+// Subscription Management
+model Subscription {
+  id                   String   @id @default(cuid())
+  
+  organizationId       String   @unique @map("organization_id")
+  organization         Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  
+  stripeSubscriptionId String?  @unique @map("stripe_subscription_id")
+  stripePriceId        String?  @map("stripe_price_id")
+  stripeCustomerId     String?  @map("stripe_customer_id")
+  
+  status               SubscriptionStatus @default(ACTIVE)
+  plan                 Plan     @default(FREE)
+  
+  currentPeriodStart   DateTime @map("current_period_start")
+  currentPeriodEnd     DateTime @map("current_period_end")
+  cancelAtPeriodEnd    Boolean  @default(false) @map("cancel_at_period_end")
+  canceledAt           DateTime? @map("canceled_at")
+  
+  trialEndsAt          DateTime? @map("trial_ends_at")
+  
+  createdAt            DateTime @default(now()) @map("created_at")
+  updatedAt            DateTime @updatedAt @map("updated_at")
+  
+  @@index([stripeSubscriptionId])
+  @@index([organizationId])
+  @@map("subscriptions")
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  TRIALING
+  PAST_DUE
+  CANCELED
+  INCOMPLETE
+  INCOMPLETE_EXPIRED
+  UNPAID
+}
+
+// Usage Tracking
+model MonthlyUsage {
+  id             String   @id @default(cuid())
+  
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  
+  month          String   // Format: "2026-01"
+  
+  messagesSent   Int      @default(0) @map("messages_sent")
+  contactsActive Int      @default(0) @map("contacts_active")
+  aiTokensUsed   Int      @default(0) @map("ai_tokens_used")
+  storageUsedMB  Int      @default(0) @map("storage_used_mb")
+  
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+  
+  @@unique([organizationId, month])
+  @@index([month])
+  @@map("monthly_usage")
+}
+
+// Feature Flags
+model FeatureFlag {
+  id             String   @id @default(cuid())
+  
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  
+  feature        String   // e.g., "ai_chatbot", "drip_campaigns", "analytics"
+  enabled        Boolean  @default(true)
+  
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+  
+  @@unique([organizationId, feature])
+  @@map("feature_flags")
+}
+
+// Platform Settings (Super Admin Only)
+model PlatformSettings {
+  id    String @id @default(cuid())
+  key   String @unique // e.g., "openai_api_key", "anthropic_api_key"
+  value String // Encrypted value
+  
+  description String? // What this setting is for
+  isSecret    Boolean @default(false) @map("is_secret") // If true, value is sensitive
+  
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  
+  @@map("platform_settings")
+}
+
+// ============================================
+// AUTOMATION & EVENT BUS
+// ============================================
+
+model AutomationRule {
+  id             String   @id @default(cuid())
+  name           String
+  description    String?
+  
+  triggerType    String   @map("trigger_type") // FLOW_COMPLETED, DEAL_STAGE_CHANGED, etc.
+  triggerConfig  Json     @map("trigger_config") // { flowId: "..." }
+  
+  actionType     String   @map("action_type") // ADD_TAG, CREATE_DEAL, etc.
+  actionConfig   Json     @map("action_config") // { tag: "..." }
+  
+  isActive       Boolean  @default(true) @map("is_active")
+  
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@map("automation_rules")
+}
+
+// ============================================
+// KNOWLEDGE BASE (RAG Documents)
+// ============================================
+
+model KnowledgeDocument {
+  id             String   @id @default(cuid())
+  name           String
+  type           KnowledgeDocType
+  
+  // Storage for uploaded files
+  storageUrl     String?  @map("storage_url")
+  storagePath    String?  @map("storage_path")
+  
+  // External URL for web sources
+  externalUrl    String?  @map("external_url")
+  
+  // File metadata
+  fileSize       Int?     @map("file_size")
+  mimeType       String?  @map("mime_type")
+  
+  // Processing status
+  status         KnowledgeDocStatus @default(PENDING)
+  errorMessage   String?  @map("error_message")
+  
+  // Vector embeddings metadata (for RAG)
+  chunkCount     Int      @default(0) @map("chunk_count")
+  lastIndexedAt  DateTime? @map("last_indexed_at")
+  
+  organizationId String   @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  
+  createdBy      String   @map("created_by")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@index([organizationId])
+  @@index([status])
+  @@map("knowledge_documents")
+}
+
+enum KnowledgeDocType {
+  PDF
+  DOCX
+  TXT
+  URL
+  CSV
+}
+
+enum KnowledgeDocStatus {
+  PENDING
+  INDEXING
+  INDEXED
+  FAILED
+}
