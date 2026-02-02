@@ -1,0 +1,89 @@
+{
+    "formName": "Form 1098 - Mortgage Interest Statement",
+    "systemPrompt": "Extract all data from Form 1098.\n\n1. IDENTIFICATION:\n   - RECIPIENT/LENDER: The financial institution (bank, credit union) that received mortgage interest payments.\n   - PAYER/BORROWER: The individual who paid the mortgage interest.\n\n2. TIN EXTRACTION (CRITICAL):\n   - 'Recipient/Lender TIN' is located in the top-left section, labeled 'RECIPIENT'S/LENDER'S TIN' or 'FILER'S federal identification number'. This is typically a 9-digit EIN in XX-XXXXXXX format. You MUST extract this field.\n   - 'Payer/Borrower TIN' is the borrower's SSN, typically in XXX-XX-XXXX format.\n\n3. ADDRESS EXTRACTION:\n   - Extract the Lender's complete name, address, and phone number.\n   - Extract the Borrower's name, street address, and city/state/zip as separate fields.\n\n4. BOX EXTRACTION: Extract all numbered boxes 1 through 11. If any box or checkbox is empty, return null or 0.00.\n\n5. MULTI-PROPERTY: If a summary table with multiple loans exists, extract each loan as a separate record and include a 'TOTALS' record if applicable.\n\n6. DATA INTEGRITY: Ensure the Account Number is correctly associated with its corresponding mortgage data.",
+    "fields": [
+        {
+            "code": "is_void",
+            "label": "VOID Checkbox Status"
+        },
+        {
+            "code": "is_corrected",
+            "label": "CORRECTED Checkbox Status"
+        },
+        {
+            "code": "lender_name_address_phone",
+            "label": "Recipient/Lender Name, Address, and Phone"
+        },
+        {
+            "code": "lender_tin",
+            "label": "Recipient/Lender TIN (FILER's federal ID)"
+        },
+        {
+            "code": "borrower_tin",
+            "label": "Payer/Borrower TIN (SSN)"
+        },
+        {
+            "code": "borrower_name",
+            "label": "Payer/Borrower Name"
+        },
+        {
+            "code": "borrower_street_address",
+            "label": "Payer/Borrower Street Address"
+        },
+        {
+            "code": "borrower_city_state_zip",
+            "label": "Payer/Borrower City, State, and Zip"
+        },
+        {
+            "code": "account_number",
+            "label": "Account Number"
+        },
+        {
+            "code": "1",
+            "label": "Mortgage interest received"
+        },
+        {
+            "code": "2",
+            "label": "Outstanding mortgage principal"
+        },
+        {
+            "code": "3",
+            "label": "Mortgage origination date"
+        },
+        {
+            "code": "4",
+            "label": "Refund of overpaid interest"
+        },
+        {
+            "code": "5",
+            "label": "Mortgage insurance premiums"
+        },
+        {
+            "code": "6",
+            "label": "Points paid on purchase"
+        },
+        {
+            "code": "7_checkbox",
+            "label": "Box 7 Checkbox (Address same as borrower)"
+        },
+        {
+            "code": "8",
+            "label": "Address or description of property"
+        },
+        {
+            "code": "9",
+            "label": "Number of mortgaged properties"
+        },
+        {
+            "code": "10",
+            "label": "Other"
+        },
+        {
+            "code": "11",
+            "label": "Mortgage acquisition date"
+        }
+    ],
+    "promptVersion": "1.2.0",
+    "lastUpdated": "2026-01-28",
+    "changelog": "v1.2.0: Added explicit TIN extraction instructions. Clarified Recipient/Lender vs Payer/Borrower terminology. Enhanced field labels for clarity."
+}

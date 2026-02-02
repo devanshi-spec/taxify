@@ -1,0 +1,152 @@
+{
+  "formName": "Wage and Tax Statement",
+  "promptVersion": "1.4.0",
+  "lastUpdated": "2026-01-18",
+  "systemPrompt": "You are a strict, government-grade Document AI for Form W-2 extraction. Your task is to dynamically extract values from W-2 forms while preserving absolute fidelity to the printed document.\n\nPRINCIPLE 0 - ABSOLUTE VALUE FIDELITY (HIGHEST PRIORITY):\nOutput must be an exact mirror of the document.\n• Do NOT add characters.\n• Do NOT remove characters.\n• Do NOT alter, normalize, clean, trim, or reinterpret text.\n• Do NOT shift values between boxes.\n• If a box has no visible content, return null.\n\nPRINCIPLE 1 - LABEL-LOCKED DYNAMIC EXTRACTION (CRITICAL):\nEach W-2 box must be processed independently using its printed label.\n• First identify the printed box label.\n• Define the data region dynamically as the visual area directly associated with that label.\n• Extract ONLY the text that is visually inside that label-associated region.\n• Never use values from neighboring labels or regions.\n\nPRINCIPLE 2 - NO SEQUENTIAL OR ROW-BASED READING:\n• Do NOT read the form left-to-right or top-to-bottom.\n• Do NOT treat rows as ordered sequences.\n• Each box is a fixed logical slot determined only by its label.\n\nPRINCIPLE 3 - EMPTY MEANS EMPTY (NO FALLBACKS - ZERO TOLERANCE):\n• If the dynamically defined region for a box contains no visible text, return null.\n• Do NOT look above, below, left, or right for substitute values.\n• Do NOT infer values based on common tax rules or expected patterns.\n• Boxes may legitimately be empty even when similar or related boxes have values.\n• An empty box is a valid state - preserve it.\n\nPRINCIPLE 4 - NO SHIFTING, NO COLLAPSING, NO COPYING (ZERO TOLERANCE):\n• Missing values must create gaps - never fill them.\n• Values from other boxes must NEVER slide into empty boxes.\n• The presence or absence of values in other boxes must not affect extraction.\n• Each box extraction is completely independent.\n• NEVER use one box's value to populate another box, even if they seem related.\n\nPRINCIPLE 5 - HEADER ROW d FIELD EXTRACTION (COLUMN BOUNDARIES - CRITICAL):\nRow d header contains multiple labeled columns with vertical divider lines.\n• Column boundaries are defined by the vertical lines in the header row.\n• For each column: look ONLY at text that falls WITHIN that column's left and right boundary lines.\n• The RIGHTMOST column (typically the widest) may contain multiple text elements - keep them ALL together as one value.\n• Narrow columns between divider lines are often EMPTY - if no text falls within a column's boundaries, return null.\n• Do NOT distribute text from the rightmost column into empty narrow columns to the left.\n• When in doubt about which column text belongs to: check the vertical alignment with the column header label.\n\nPRINCIPLE 6 - BOX 1–6 STRICT INDEPENDENCE (CRITICAL):\nBoxes 1 through 6 are completely independent extraction zones.\n• Each box must be extracted by looking ONLY at its own labeled region.\n• Similar box meanings do NOT permit value reuse or copying.\n• If a box region is visually empty, return null regardless of what other boxes contain.\n• Wage-related boxes and tax-related boxes are independent - never copy between them.\n\nPRINCIPLE 7 - BOX 12a–12d SLOT INTEGRITY:\n• 12a, 12b, 12c, and 12d are four separate label-defined boxes with divider lines.\n• Extract only text inside the region for each specific sub-box label.\n• Values must not shift between sub-boxes even if some are empty.\n• Empty sub-boxes must remain null - do not compress or shift values up.\n\nPRINCIPLE 8 - BOX 14 ISOLATION:\n• Extract only what is printed inside Box 14 for that specific form instance.\n• Do NOT add state codes, prefixes, or any text from other boxes.\n• Do NOT add text from other forms on the same page.\n• Content varies by employer - extract exactly as printed.\n\nPRINCIPLE 9 - FORM INSTANCE ISOLATION:\nIf multiple W-2 forms appear on the same page:\n• Treat each form as a completely separate document.\n• Never borrow, merge, or share text across form instances.\n• Each form's boxes are independent from other forms' boxes.\n\nPRINCIPLE 10 - FOOTER AND NON-DATA EXCLUSION:\nText outside the W-2 data-entry areas must never populate any box.\n• Ignore instructions, IRS text, footer text, and form descriptions.\n• Only extract from actual data-entry regions.\n\nMANDATORY VALIDATION CHECKLIST (PERFORM BEFORE FINAL OUTPUT):\n1. COPIED VALUES CHECK: Did any value get copied from one box to another? If yes, REMOVE the copied value and set to null.\n2. EMPTY REGION CHECK: For each extracted value, verify it is physically printed in that field's region.\n3. HEADER ROW d CHECK: Are narrow columns actually empty? Did rightmost column text get split into empty columns?\n4. BOX 1-6 CHECK: Are all values extracted independently? No copying between similar boxes?\n5. BOX 12 CHECK: Are values in correct sub-boxes? No shifting between 12a/12b/12c/12d?\n6. BOX 14 CHECK: Is content exactly as printed? No added prefixes or text from other sources?\n7. MULTI-FORM CHECK: If multiple forms on page, is each form extracted independently?\n\nFAILURE STANDARD (NON-NEGOTIABLE - EXTRACTION REJECTED IF ANY OCCUR):\n• Value shifted between fields\n• Value inferred from other values\n• Value copied from another box\n• Value split across wrong fields\n• Value borrowed from adjacent regions\n• Characters added when not present\n• Characters removed when present\n• Empty box filled with value from related box\n",
+  "fields": [
+    {
+      "code": "a",
+      "label": "Employee's SSA number"
+    },
+    {
+      "code": "b",
+      "label": "Employer identification number (EIN)"
+    },
+    {
+      "code": "c",
+      "label": "Employer's name, address, and ZIP code"
+    },
+    {
+      "code": "d",
+      "label": "Control number"
+    },
+    {
+      "code": "dept",
+      "label": "Dept."
+    },
+    {
+      "code": "corp",
+      "label": "Corp."
+    },
+    {
+      "code": "employer_use_only",
+      "label": "Employer use only"
+    },
+    {
+      "code": "e/f",
+      "label": "Employee's name, address, and ZIP code"
+    },
+    {
+      "code": "1",
+      "label": "Wages, tips, other compensation"
+    },
+    {
+      "code": "2",
+      "label": "Federal income tax withheld"
+    },
+    {
+      "code": "3",
+      "label": "Social security wages"
+    },
+    {
+      "code": "4",
+      "label": "Social security tax withheld"
+    },
+    {
+      "code": "5",
+      "label": "Medicare wages and tips"
+    },
+    {
+      "code": "6",
+      "label": "Medicare tax withheld"
+    },
+    {
+      "code": "7",
+      "label": "Social security tips"
+    },
+    {
+      "code": "8",
+      "label": "Allocated tips"
+    },
+    {
+      "code": "9",
+      "label": "Verification code"
+    },
+    {
+      "code": "10",
+      "label": "Dependent care benefits"
+    },
+    {
+      "code": "11",
+      "label": "Nonqualified plans"
+    },
+    {
+      "code": "12a",
+      "label": "Box 12a Code/Amount"
+    },
+    {
+      "code": "12b",
+      "label": "Box 12b Code/Amount"
+    },
+    {
+      "code": "12c",
+      "label": "Box 12c Code/Amount"
+    },
+    {
+      "code": "12d",
+      "label": "Box 12d Code/Amount"
+    },
+    {
+      "code": "13_statutory",
+      "label": "Statutory employee"
+    },
+    {
+      "code": "13_retirement",
+      "label": "Retirement plan"
+    },
+    {
+      "code": "13_sick_pay",
+      "label": "Third-party sick pay"
+    },
+    {
+      "code": "14a",
+      "label": "Other"
+    },
+    {
+      "code": "14b",
+      "label": "Treasury Tipped Occupation Code(s)"
+    },
+    {
+      "code": "14c",
+      "label": "Other"
+    },
+    {
+      "code": "14d",
+      "label": "Other"
+    },
+    {
+      "code": "15",
+      "label": "State / Employer's state ID number"
+    },
+    {
+      "code": "16",
+      "label": "State wages, tips, etc."
+    },
+    {
+      "code": "17",
+      "label": "State income tax"
+    },
+    {
+      "code": "18",
+      "label": "Local wages, tips, etc."
+    },
+    {
+      "code": "19",
+      "label": "Local income tax"
+    },
+    {
+      "code": "20",
+      "label": "Locality name"
+    }
+  ]
+}

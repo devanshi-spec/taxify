@@ -1,0 +1,109 @@
+{
+    "formName": "Interest Income",
+    "systemPrompt": "You are a specialized Document AI for Form 1099-INT.\n\n=== 1. PRE-CHECK: RECIPIENT NAME (ANTI-HALLUCINATION) ===\n• Look ONLY at the box labeled 'RECIPIENT’S name...'.\n• If this box is blank or redacted (black bars): Return 'redacted' or null.\n• DO NOT extract the name from the top-left letterhead/correspondence area. IGNORE IT.\n\n=== 2. PRIMARY EXTRACTION LOGIC (DECISION TREE) ===\nCheck the 'Account Number' box:\n\n[CASE A: Account Number says 'See Detail Below' or 'See Summary']\n  → THIS IS A CONSOLIDATED FORM. You MUST output a LIST of multiple forms.\n  \n  1. EXTRACT TOTAL FORM:\n     - Extract the Main Top Box values (Interest, Fed Tax, etc.) as the first form object.\n     - Set 'Account Number' = \"TOTAL\".\n     - Use Payer/Recipient from top section.\n  \n  2. EXTRACT DETAIL FORMS (SCAN TABLE):\n     - Scan the SUMMARY TABLE below the main form.\n     - START A NEW FORM for EACH row in this table.\n     - Row 1: Account=...6104, Interest=$1.76, Payer=Inherit, Recipient=Inherit\n     - Row 2: Account=...0870, Interest=$0.07, Payer=Inherit, Recipient=Inherit\n     - And so on for ALL rows.\n  \n  • FAILURE CONDITION: If 'See Detail' is present but you only output 1 form, you have FAILED. Visual scan is mandatory.\n\n[CASE B: Account Number is a standard value (e.g. '12345678')]\n  → EXTRACT SINGLE FORM.\n  - Extract all fields normally from their labeled boxes.\n\n=== 3. PAYER & TIN RULES ===\n• Payer/Recipient TINs: Extract strictly from their labeled boxes. Left/Right or Top/Bottom relative to labels.\n• Do not mix them up.\n     \n=== 4. GENERIC FORMATTING ===\n• Monetary: Float.\n• Checkboxes: Boolean.\n• Blurred/Redacted: null.",
+    "fields": [
+        {
+            "code": "Payer",
+            "label": "Payer's name and address"
+        },
+        {
+            "code": "Payer Telephone",
+            "label": "Payer's telephone"
+        },
+        {
+            "code": "Payer TIN",
+            "label": "Payer's TIN"
+        },
+        {
+            "code": "Payer RTN",
+            "label": "Payer's Routing Number"
+        },
+        {
+            "code": "FATCA",
+            "label": "FATCA filing requirement"
+        },
+        {
+            "code": "Recipient TIN",
+            "label": "Recipient's TIN"
+        },
+        {
+            "code": "Recipient Name",
+            "label": "Recipient's name and address"
+        },
+        {
+            "code": "Account No",
+            "label": "Account number"
+        },
+        {
+            "code": "1",
+            "label": "Interest income"
+        },
+        {
+            "code": "2",
+            "label": "Early withdrawal penalty"
+        },
+        {
+            "code": "3",
+            "label": "Interest on U.S. Savings Bonds"
+        },
+        {
+            "code": "4",
+            "label": "Federal income tax withheld"
+        },
+        {
+            "code": "5",
+            "label": "Investment expenses"
+        },
+        {
+            "code": "6",
+            "label": "Foreign tax paid"
+        },
+        {
+            "code": "7",
+            "label": "Foreign country"
+        },
+        {
+            "code": "8",
+            "label": "Tax-exempt interest"
+        },
+        {
+            "code": "9",
+            "label": "Private activity bond interest"
+        },
+        {
+            "code": "10",
+            "label": "Market discount"
+        },
+        {
+            "code": "11",
+            "label": "Bond premium"
+        },
+        {
+            "code": "12",
+            "label": "Bond premium on Treasury"
+        },
+        {
+            "code": "13",
+            "label": "Bond premium on tax-exempt"
+        },
+        {
+            "code": "14",
+            "label": "Tax-exempt bond CUSIP"
+        },
+        {
+            "code": "15",
+            "label": "State"
+        },
+        {
+            "code": "16",
+            "label": "State ID no."
+        },
+        {
+            "code": "17",
+            "label": "State tax withheld"
+        }
+    ],
+    "promptVersion": "1.4.0",
+    "lastUpdated": "2026-01-30",
+    "changelog": "v1.4.0: Added HYBRID extraction mode (Total + Details) for consolidated forms."
+}

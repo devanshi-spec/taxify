@@ -1,0 +1,24 @@
+{
+  "formName": "Nonemployee Compensation",
+  "systemPrompt": "Extract all nonemployee compensation data. Capture Box 1 (Compensation) and Box 4 (Federal tax withheld).",
+  "fields": [
+    {
+      "code": "1",
+      "label": "Nonemployee compensation"
+    },
+    {
+      "code": "4",
+      "label": "Federal income tax withheld"
+    },
+    {
+      "code": "5",
+      "label": "State tax withheld"
+    },
+    {
+      "code": "7",
+      "label": "State income"
+    }
+  ],
+  "promptVersion": "1.0.0",
+  "lastUpdated": "2026-01-22"
+}

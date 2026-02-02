@@ -1,0 +1,42 @@
+{
+  "W-2": {
+    "current_version": "v1.4.0",
+    "versions": {
+      "v1.4.0": "./prompts/W-2/prompt_v1.4.0.json"
+    }
+  },
+  "1099-INT": {
+    "current_version": "v1.4.0",
+    "versions": {
+      "v1.3.0": "./prompts/1099-INT/prompt_v1.3.0.json",
+      "v1.4.0": "./prompts/1099-INT/prompt_v1.4.0.json"
+    }
+  },
+  "1098": {
+    "current_version": "v1.4.0",
+    "versions": {
+      "v1.4.0": "./prompts/1098/prompt_v1.4.0.json"
+    }
+  },
+  "1098-T": {
+    "current_version": "v1.1.0",
+    "versions": {
+      "v1.0.0": "./prompts/1098-T/prompt_v1.0.0.json",
+      "v1.1.0": "./prompts/1098-T/prompt_v1.1.0.json"
+    }
+  },
+  "1099-DIV": {
+    "current_version": "v1.1.0",
+    "versions": {
+      "v1.0.0": "./prompts/1099-DIV/prompt_v1.0.0.json",
+      "v1.1.0": "./prompts/1099-DIV/prompt_v1.1.0.json"
+    }
+  },
+  "1099-NEC": {
+    "current_version": "v1.1.0",
+    "versions": {
+      "v1.0.0": "./prompts/1099-NEC/prompt_v1.0.0.json",
+      "v1.1.0": "./prompts/1099-NEC/prompt_v1.1.0.json"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+    "formName": "Form 1098 - Mortgage Interest Statement",
+    "systemPrompt": "You are a strict Document AI for Form 1098 extraction.\n\n=== CRITICAL: TIN CLASSIFICATION (MOST IMPORTANT RULE) ===\n• There are TWO TIN fields on this form. You MUST read the label text to classify correctly.\n• Look for the EXACT label text printed on the form next to each TIN:\n  - If the label says 'RECIPIENT' or 'LENDER' in its text → put TIN value in lender_tin\n  - If the label says 'PAYER' or 'BORROWER' in its text → put TIN value in borrower_tin\n• The form labels are: 'RECIPIENT'S/LENDER'S TIN' and 'PAYER'S/BORROWER'S TIN'\n• Read the label CAREFULLY before assigning the TIN to a field.\n• If you cannot clearly read which label a TIN belongs to, return null for both.\n\n=== EXTRACT ONLY FROM BORDERED FORM ===\n• Extract ONLY from inside the bordered IRS form structure.\n• NEVER extract from page letterheads, company logos, or marketing text outside the form.\n• If a box inside the form is empty, return null.\n\n=== BLURRED/UNREADABLE TEXT ===\n• If text is blurred or unreadable - return null.\n• If you cannot read every character clearly - return null.\n\n=== FIELD MAPPING ===\n• lender_name_address_phone: Text from box labeled with RECIPIENT/LENDER\n• lender_tin: TIN from box labeled RECIPIENT'S/LENDER'S TIN\n• borrower_tin: TIN from box labeled PAYER'S/BORROWER'S TIN\n• borrower_name, borrower_street_address, borrower_city_state_zip: From boxes labeled PAYER/BORROWER\n• account_number: From 'Account number' box\n• Boxes 1-11: From numbered boxes\n\n=== ZERO GUESSING ===\n• When in doubt, return null.",
+    "fields": [
+        {
+            "code": "is_void",
+            "label": "VOID Checkbox"
+        },
+        {
+            "code": "is_corrected",
+            "label": "CORRECTED Checkbox"
+        },
+        {
+            "code": "lender_name_address_phone",
+            "label": "Recipient/Lender Name, Address, Phone"
+        },
+        {
+            "code": "lender_tin",
+            "label": "Recipient/Lender TIN"
+        },
+        {
+            "code": "borrower_tin",
+            "label": "Payer/Borrower TIN"
+        },
+        {
+            "code": "borrower_name",
+            "label": "Payer/Borrower Name"
+        },
+        {
+            "code": "borrower_street_address",
+            "label": "Payer/Borrower Street Address"
+        },
+        {
+            "code": "borrower_city_state_zip",
+            "label": "Payer/Borrower City, State, Zip"
+        },
+        {
+            "code": "account_number",
+            "label": "Account Number"
+        },
+        {
+            "code": "1",
+            "label": "Mortgage interest received"
+        },
+        {
+            "code": "2",
+            "label": "Outstanding mortgage principal"
+        },
+        {
+            "code": "3",
+            "label": "Mortgage origination date"
+        },
+        {
+            "code": "4",
+            "label": "Refund of overpaid interest"
+        },
+        {
+            "code": "5",
+            "label": "Mortgage insurance premiums"
+        },
+        {
+            "code": "6",
+            "label": "Points paid on purchase"
+        },
+        {
+            "code": "7_checkbox",
+            "label": "Box 7 Checkbox"
+        },
+        {
+            "code": "8",
+            "label": "Property address or description"
+        },
+        {
+            "code": "9",
+            "label": "Number of mortgaged properties"
+        },
+        {
+            "code": "10",
+            "label": "Other"
+        },
+        {
+            "code": "11",
+            "label": "Mortgage acquisition date"
+        }
+    ],
+    "promptVersion": "1.3.0",
+    "lastUpdated": "2026-01-28",
+    "changelog": "v1.3.0: Emphasized reading EXACT label text for TIN classification. Added specific label strings to match."
+}

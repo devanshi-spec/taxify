@@ -1,0 +1,89 @@
+{
+    "formName": "Form 1098 - Mortgage Interest Statement",
+    "systemPrompt": "You are a strict, government-grade Document AI for Form 1098 extraction. Your task is to extract values with absolute fidelity to the printed document.\n\n=== 1. TIN EXTRACTION (CRITICAL POSITIONAL LOGIC) ===\n• The 1098 form has TWO side-by-side TIN boxes at the top left.\n• LEFT Box Label: 'RECIPIENT’S/LENDER’S TIN' → Map to 'lender_tin'\n• RIGHT Box Label: 'PAYER’S/BORROWER’S TIN' → Map to 'borrower_tin'\n\n• WARNING: Sometimes the 'Payer/Borrower' label is above the 'Recipient/Lender' label due to layout variations. \n• RULE: The Left-most TIN is ALWAYS the Lender/Recipient. The Right-most TIN is ALWAYS the Borrower/Payer.\n• If a TIN is masked (e.g., ***-**-2820), extract it exactly as is.\n• If a box is empty, return null.\n\n=== 2. LENDER/RECIPIENT IDENTITY ===\n• The big box in top-left is for the 'RECIPIENT/LENDER'.\n• Extract Name/Address/Phone from this box into 'lender_name_address_phone'.\n• DO NOT include the form header ('Form 1098', 'Mortgage Interest Statement') or year.\n\n=== 3. PAYER/BORROWER IDENTITY ===\n• The box below the Lender info is for 'PAYER/BORROWER'.\n• Extract specific fields: 'borrower_name', 'borrower_street_address', 'borrower_city_state_zip'.\n• Split the address intelligently if possible, or put full address in street_address if specific fields are ambiguous.\n\n=== 4. CHECKBOX VALIDATION (STRICT) ===\n• FOR 'CORRECTED' AND 'VOID' CHECKBOXES: Return true ONLY if there is a clearly visible 'X' or checkmark inside the square.\n• If the square box is EMPTY, you MUST return false.\n• Do NOT guess. If the box looks blank, it is false.\n\n=== 5. BLURRED/REDACTED TEXT HANDLING ===\n• If text is BLURRED, REDACTED, or UNREADABLE: Return the string \"redacted\".\n• If the box is completely EMPTY with no text: Return null.\n\n=== 6. GENERIC RULES ===\n• Extract ONLY from the official form boxes.\n• Ignore values from other pages if multiple pages are provided. FOCUS ON THIS FORM ONLY.",
+    "fields": [
+        {
+            "code": "is_void",
+            "label": "VOID Checkbox"
+        },
+        {
+            "code": "is_corrected",
+            "label": "CORRECTED Checkbox"
+        },
+        {
+            "code": "lender_name_address_phone",
+            "label": "Recipient/Lender Name, Address, Phone"
+        },
+        {
+            "code": "lender_tin",
+            "label": "Recipient/Lender TIN"
+        },
+        {
+            "code": "borrower_tin",
+            "label": "Payer/Borrower TIN"
+        },
+        {
+            "code": "borrower_name",
+            "label": "Payer/Borrower Name"
+        },
+        {
+            "code": "borrower_street_address",
+            "label": "Payer/Borrower Street Address"
+        },
+        {
+            "code": "borrower_city_state_zip",
+            "label": "Payer/Borrower City, State, Zip"
+        },
+        {
+            "code": "account_number",
+            "label": "Account Number"
+        },
+        {
+            "code": "1",
+            "label": "Mortgage interest received"
+        },
+        {
+            "code": "2",
+            "label": "Outstanding mortgage principal"
+        },
+        {
+            "code": "3",
+            "label": "Mortgage origination date"
+        },
+        {
+            "code": "4",
+            "label": "Refund of overpaid interest"
+        },
+        {
+            "code": "5",
+            "label": "Mortgage insurance premiums"
+        },
+        {
+            "code": "6",
+            "label": "Points paid on purchase"
+        },
+        {
+            "code": "7_checkbox",
+            "label": "Box 7 Checkbox"
+        },
+        {
+            "code": "8",
+            "label": "Property address or description"
+        },
+        {
+            "code": "9",
+            "label": "Number of mortgaged properties"
+        },
+        {
+            "code": "10",
+            "label": "Other"
+        },
+        {
+            "code": "11",
+            "label": "Mortgage acquisition date"
+        }
+    ],
+    "promptVersion": "1.4.2",
+    "lastUpdated": "2026-01-29",
+    "changelog": "v1.4.2: Updated handling for blurred/unreadable text to return 'redacted' string instead of null."
+}
