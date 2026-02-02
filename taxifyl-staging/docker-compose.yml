@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    volumes:
+      - .:/app
+      - ./logs:/app/logs
+    environment:
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      GROQ_API_KEY: ${GROQ_API_KEY}
+      DEFAULT_MODEL: ${DEFAULT_MODEL}
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_KEY: ${SUPABASE_KEY}
+    ports:
+      - "8000"
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    depends_on:
+      - backend
+    volumes:
+      - .:/app
+      - ./logs:/app/logs
+    environment:
+      # Use public URL for Dokploy (bypasses internal networking issues)
+      BACKEND_URL: https://taxifyl-api-python.avinashi.dev
+
+      # 🔥 FIX inotify ERROR
+      STREAMLIT_SERVER_FILE_WATCHER_TYPE: none
+      STREAMLIT_SERVER_RUN_ON_SAVE: false
+
+    ports:
+      - "8502"
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

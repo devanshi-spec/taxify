@@ -1,0 +1,109 @@
+{
+    "formName": "Interest Income",
+    "systemPrompt": "Extract all data from Form 1099-INT.\n\n1. MULTI-INSTANCE EXTRACTION: If the document contains multiple accounts (table format, combined statement, or summary), extract EACH account as a separate record. If a 'TOTALS' or 'Summary Total' row exists, extract it as an additional record with Account Number set to 'TOTALS'.\n\n2. PAYER IDENTIFICATION:\n   - Extract the Payer's legal name and mailing address ONLY.\n   - EXCLUDE any customer service labels, phone labels, contact information, or support text (e.g., 'Customer Service:', 'Questions?', 'For assistance call').\n   - If a phone number appears in the payer section, extract it separately as 'Payer Telephone'.\n   - Extract 'Payer RTN' (Routing Transit Number) if present - typically a 9-digit bank routing number.\n   - Extract 'FATCA filing requirement' checkbox status if marked.\n\n3. RECIPIENT IDENTIFICATION: Extract the Recipient's full TIN, name, and address.\n\n4. BOX EXTRACTION: Extract all numbered boxes 1 through 17. If any box is empty, return null or 0.00.\n\n5. DATA INTEGRITY: Maintain strict 1:1 relationship between Account Number, Payer info, and amounts for each record.",
+    "fields": [
+        {
+            "code": "Payer",
+            "label": "Payer's name and address (exclude service labels)"
+        },
+        {
+            "code": "Payer Telephone",
+            "label": "Payer's telephone number"
+        },
+        {
+            "code": "Payer TIN",
+            "label": "Payer's TIN"
+        },
+        {
+            "code": "Payer RTN",
+            "label": "Payer's Routing Transit Number"
+        },
+        {
+            "code": "FATCA",
+            "label": "FATCA filing requirement checkbox"
+        },
+        {
+            "code": "Recipient TIN",
+            "label": "Recipient's TIN"
+        },
+        {
+            "code": "Recipient Name",
+            "label": "Recipient's name and address"
+        },
+        {
+            "code": "Account No",
+            "label": "Account number"
+        },
+        {
+            "code": "1",
+            "label": "Interest income"
+        },
+        {
+            "code": "2",
+            "label": "Early withdrawal penalty"
+        },
+        {
+            "code": "3",
+            "label": "Interest on U.S. Savings Bonds and Treasury obligations"
+        },
+        {
+            "code": "4",
+            "label": "Federal income tax withheld"
+        },
+        {
+            "code": "5",
+            "label": "Investment expenses"
+        },
+        {
+            "code": "6",
+            "label": "Foreign tax paid"
+        },
+        {
+            "code": "7",
+            "label": "Foreign country or U.S. territory"
+        },
+        {
+            "code": "8",
+            "label": "Tax-exempt interest"
+        },
+        {
+            "code": "9",
+            "label": "Specified private activity bond interest"
+        },
+        {
+            "code": "10",
+            "label": "Market discount"
+        },
+        {
+            "code": "11",
+            "label": "Bond premium"
+        },
+        {
+            "code": "12",
+            "label": "Bond premium on Treasury obligations"
+        },
+        {
+            "code": "13",
+            "label": "Bond premium on tax-exempt bond"
+        },
+        {
+            "code": "14",
+            "label": "Tax-exempt and tax credit bond CUSIP no."
+        },
+        {
+            "code": "15",
+            "label": "State"
+        },
+        {
+            "code": "16",
+            "label": "State identification no."
+        },
+        {
+            "code": "17",
+            "label": "State tax withheld"
+        }
+    ],
+    "promptVersion": "1.2.0",
+    "lastUpdated": "2026-01-28",
+    "changelog": "v1.2.0: Added Payer RTN and FATCA fields. Added explicit exclusion rule for customer service labels in Payer name/address. Improved multi-account extraction."
+}

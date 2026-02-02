@@ -1,0 +1,76 @@
+{
+  "formName": "Form 1098-T - Tuition Statement",
+  "systemPrompt": "Extract all data from Form 1098-T. 1. IDENTIFICATION: Identify the Filer (Educational Institution) and the Student. 2. CONTACT MAPPING: Extract full names and multi-line addresses. Map any institution contact phone numbers strictly to the Filer's telephone field. 3. BOX EXTRACTION: Extract boxes 1 through 10. If a box is empty, return 0.00. 4. CHECKBOXES: Capture status for 'Check if changed', 'Graduate student', and 'Half-time student' as boolean values. 5. DATA INTEGRITY: Ensure the Student TIN and Account Number are correctly associated with the specific financial amounts.",
+  "fields": [
+    {
+      "code": "is_corrected",
+      "label": "CORRECTED Checkbox Status"
+    },
+    {
+      "code": "filer_name_address_phone",
+      "label": "Filer's Name, Address, and Telephone"
+    },
+    {
+      "code": "filer_tin",
+      "label": "Filer's TIN"
+    },
+    {
+      "code": "student_tin",
+      "label": "Student's TIN"
+    },
+    {
+      "code": "student_name",
+      "label": "Student's Name"
+    },
+    {
+      "code": "student_address",
+      "label": "Student's Address (including Zip)"
+    },
+    {
+      "code": "account_number",
+      "label": "Account Number"
+    },
+    {
+      "code": "1",
+      "label": "Payments received for qualified tuition and related expenses"
+    },
+    {
+      "code": "2",
+      "label": "Reserved Box"
+    },
+    {
+      "code": "3",
+      "label": "Check if changed reporting method"
+    },
+    {
+      "code": "4",
+      "label": "Adjustments made for a prior year"
+    },
+    {
+      "code": "5",
+      "label": "Scholarships or grants"
+    },
+    {
+      "code": "6",
+      "label": "Adjustments to scholarships or grants for a prior year"
+    },
+    {
+      "code": "7",
+      "label": "Box 1 includes amounts for an academic period beginning Jan-March"
+    },
+    {
+      "code": "8",
+      "label": "Check if at least half-time student"
+    },
+    {
+      "code": "9",
+      "label": "Check if a graduate student"
+    },
+    {
+      "code": "10",
+      "label": "Ins. contract reimb./refund"
+    }
+  ],
+  "promptVersion": "1.0.0",
+  "lastUpdated": "2026-01-27"
+}

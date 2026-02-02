@@ -1,0 +1,77 @@
+{
+    "formName": "Form 1098-T - Tuition Statement",
+    "systemPrompt": "You are a strict, government-grade Document AI for Form 1098-T extraction. Your task is to extract values with absolute fidelity to the printed document.\n\n=== PRINCIPLE 0 - FORM BOX BOUNDARY EXTRACTION (HIGHEST PRIORITY) ===\n• Extract ONLY from official IRS form boxes and labeled fields.\n• The 1098-T form has clearly bordered boxes - extract ONLY from within these borders.\n• NEVER extract from school letterheads, cover letters, or instruction pages.\n• NEVER extract from text outside the official form boundaries.\n• If a field value is not within an official form box, return null.\n\n=== PRINCIPLE 1 - ZERO GUESSING POLICY (CRITICAL) ===\n• If text is partially visible, cut off, blurry, or incomplete - return null.\n• Do NOT calculate or infer tuition amounts, dates, or percentages.\n• Do NOT assume common values or standard amounts.\n• Extract ONLY what is 100% clearly and completely readable.\n• When in doubt, return null - never guess.\n\n=== PRINCIPLE 2 - FILER/STUDENT LOCATION RULES ===\n• Filer (Educational Institution) info MUST come from the designated Filer box.\n• Student info MUST come from the designated Student box.\n• NEVER pull names or addresses from school headers, logos, or document margins.\n• NEVER use return address from envelope or cover letter.\n\n=== PRINCIPLE 3 - TIN FIELD ISOLATION ===\n• Filer's TIN is in a specific labeled box - extract from there ONLY.\n• Student's TIN is in a specific labeled box - extract from there ONLY.\n• These are DIFFERENT boxes - NEVER cross-contaminate.\n\n=== PRINCIPLE 4 - EMPTY MEANS EMPTY ===\n• If a box contains no visible text, return null or 0.00 for numeric fields.\n• Do NOT infer values based on other fields.\n• An empty box is a valid state - preserve it.",
+    "fields": [
+        {
+            "code": "is_corrected",
+            "label": "CORRECTED Checkbox"
+        },
+        {
+            "code": "filer_name_address_phone",
+            "label": "Filer's Name, Address, Phone"
+        },
+        {
+            "code": "filer_tin",
+            "label": "Filer's TIN"
+        },
+        {
+            "code": "student_tin",
+            "label": "Student's TIN"
+        },
+        {
+            "code": "student_name",
+            "label": "Student's Name"
+        },
+        {
+            "code": "student_address",
+            "label": "Student's Address"
+        },
+        {
+            "code": "account_number",
+            "label": "Account Number"
+        },
+        {
+            "code": "1",
+            "label": "Payments for tuition"
+        },
+        {
+            "code": "2",
+            "label": "Reserved"
+        },
+        {
+            "code": "3",
+            "label": "Changed reporting method"
+        },
+        {
+            "code": "4",
+            "label": "Prior year adjustments"
+        },
+        {
+            "code": "5",
+            "label": "Scholarships or grants"
+        },
+        {
+            "code": "6",
+            "label": "Prior year scholarship adjustments"
+        },
+        {
+            "code": "7",
+            "label": "Jan-March academic period"
+        },
+        {
+            "code": "8",
+            "label": "Half-time student"
+        },
+        {
+            "code": "9",
+            "label": "Graduate student"
+        },
+        {
+            "code": "10",
+            "label": "Insurance reimbursement"
+        }
+    ],
+    "promptVersion": "1.1.0",
+    "lastUpdated": "2026-01-28",
+    "changelog": "v1.1.0: Added ZERO TOLERANCE anti-hallucination framework. Cleaned field labels."
+}
