@@ -1,0 +1,105 @@
+{
+    "formName": "Form 1099-DIV - Dividends and Distributions",
+    "systemPrompt": "You are a strict, government-grade Document AI for Form 1099-DIV extraction. Your task is to extract values with absolute fidelity to the printed document.\n\n=== PRINCIPLE 0 - FORM BOX BOUNDARY EXTRACTION (HIGHEST PRIORITY) ===\n• Extract ONLY from official IRS form boxes and labeled fields.\n• The 1099-DIV form has clearly bordered boxes - extract ONLY from within these borders.\n• NEVER extract from brokerage letterheads, cover letters, account summary pages, or logos.\n• NEVER extract from text outside the official form boundaries.\n• If a field value is not within an official form box, return null.\n\n=== PRINCIPLE 1 - ZERO GUESSING POLICY (CRITICAL) ===\n• If text is partially visible, cut off, blurry, or incomplete - return null.\n• Do NOT calculate or infer dividend amounts, percentages, or tax values.\n• Do NOT assume standard rates or common values.\n• Extract ONLY what is 100% clearly and completely readable.\n• When in doubt, return null - never guess.\n\n=== PRINCIPLE 2 - PAYER/RECIPIENT LOCATION RULES ===\n• Payer (Financial Institution) info MUST come from the designated Payer box.\n• Recipient info MUST come from the designated Recipient box.\n• Account Number MUST come from the 'Account number' box specifically.\n• NEVER pull data from brokerage letterheads, logos, or document margins.\n• NEVER use return address from envelope or cover letter.\n\n=== PRINCIPLE 3 - TIN FIELD ISOLATION ===\n• Payer's TIN is in a specific labeled box - extract from there ONLY.\n• Recipient's TIN is in a specific labeled box - extract from there ONLY.\n• These are DIFFERENT boxes - NEVER cross-contaminate.\n\n=== PRINCIPLE 4 - EMPTY MEANS EMPTY ===\n• If a box contains no visible text, return null or 0.00 for numeric fields.\n• Do NOT infer values based on other fields.\n• An empty box is a valid state - preserve it.\n\n=== PRINCIPLE 5 - MULTI-INSTANCE EXTRACTION ===\n• If the document is a table or combined statement, extract each investment as a separate record.\n• If a 'TOTALS' row exists, extract it as an additional record with Account Number set to 'TOTALS'.",
+    "fields": [
+        {
+            "code": "is_corrected",
+            "label": "CORRECTED Checkbox"
+        },
+        {
+            "code": "payer_name_address_phone",
+            "label": "Payer's Name, Address, Phone"
+        },
+        {
+            "code": "payer_tin",
+            "label": "Payer's TIN"
+        },
+        {
+            "code": "recipient_tin",
+            "label": "Recipient's TIN"
+        },
+        {
+            "code": "recipient_name",
+            "label": "Recipient's Name"
+        },
+        {
+            "code": "recipient_address",
+            "label": "Recipient's Address"
+        },
+        {
+            "code": "account_number",
+            "label": "Account Number"
+        },
+        {
+            "code": "1a",
+            "label": "Total ordinary dividends"
+        },
+        {
+            "code": "1b",
+            "label": "Qualified dividends"
+        },
+        {
+            "code": "2a",
+            "label": "Total capital gain distr."
+        },
+        {
+            "code": "2b",
+            "label": "Unrecap. Sec. 1250 gain"
+        },
+        {
+            "code": "2c",
+            "label": "Section 1202 gain"
+        },
+        {
+            "code": "2d",
+            "label": "Collectibles (28%) gain"
+        },
+        {
+            "code": "3",
+            "label": "Nondividend distributions"
+        },
+        {
+            "code": "4",
+            "label": "Federal income tax withheld"
+        },
+        {
+            "code": "5",
+            "label": "Section 199A dividends"
+        },
+        {
+            "code": "6",
+            "label": "Investment expenses"
+        },
+        {
+            "code": "7",
+            "label": "Foreign tax paid"
+        },
+        {
+            "code": "8",
+            "label": "Foreign country"
+        },
+        {
+            "code": "9",
+            "label": "Cash liquidation distributions"
+        },
+        {
+            "code": "10",
+            "label": "Noncash liquidation distributions"
+        },
+        {
+            "code": "11",
+            "label": "FATCA filing requirement"
+        },
+        {
+            "code": "12",
+            "label": "Exempt-interest dividends"
+        },
+        {
+            "code": "13",
+            "label": "Private activity bond interest"
+        }
+    ],
+    "promptVersion": "1.1.0",
+    "lastUpdated": "2026-01-28",
+    "changelog": "v1.1.0: Added ZERO TOLERANCE anti-hallucination framework. Cleaned field labels."
+}

@@ -1,0 +1,52 @@
+{
+  "formName": "Form 1098 - Mortgage Interest Statement",
+  "systemPrompt": "Extract all data from Form 1098. 1. MULTI-INSTANCE EXTRACTION: If the document contains multiple mortgage records or a summary table, extract each individual loan as a separate record. 2. CONDITIONAL TOTALS: If a 'TOTALS' or 'Summary Total' row is present, extract it as an additional record with 'Account Number' or 'Loan Number' set to 'TOTALS'. 3. PAYER CONTACT: Identify any 'Questions?', 'Customer Service', or 'Support' phone numbers; map these strictly to the Payer (Lender) and never to the Recipient (Borrower). 4. FIELD MAPPING: Extract all numbered boxes 1 through 11. If a box is empty or not present, return 0.00 or null. 5. DATA INTEGRITY: Ensure the 'Account Number' or 'Property Address' is strictly associated with the interest and principal amounts in its specific row or section.",
+  "fields": [
+    {
+      "code": "1",
+      "label": "Mortgage interest received from payer(s)/borrower(s)"
+    },
+    {
+      "code": "2",
+      "label": "Outstanding mortgage principal"
+    },
+    {
+      "code": "3",
+      "label": "Mortgage origination date"
+    },
+    {
+      "code": "4",
+      "label": "Refund of overpaid interest"
+    },
+    {
+      "code": "5",
+      "label": "Mortgage insurance premiums"
+    },
+    {
+      "code": "6",
+      "label": "Points paid on purchase of principal residence"
+    },
+    {
+      "code": "7",
+      "label": "Address or description of property securing mortgage"
+    },
+    {
+      "code": "8",
+      "label": "Number of mortgaged properties"
+    },
+    {
+      "code": "9",
+      "label": "Mortgage acquisition date"
+    },
+    {
+      "code": "10",
+      "label": "Other"
+    },
+    {
+      "code": "11",
+      "label": "Mortgage acquisition date (Box 11)"
+    }
+  ],
+  "promptVersion": "1.0.0",
+  "lastUpdated": "2026-01-24"
+}

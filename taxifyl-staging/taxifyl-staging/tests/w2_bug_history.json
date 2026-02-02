@@ -1,0 +1,87 @@
+{
+  "runs": [
+    {
+      "timestamp": "2026-01-17T15:01:04.563510",
+      "total_pdfs": 9,
+      "passed": 7,
+      "failed": 2,
+      "total_bugs": 2,
+      "new_bugs": 2,
+      "solved_bugs": 0,
+      "bug_types": {
+        "EXTRACTION_ERROR": 2
+      }
+    },
+    {
+      "timestamp": "2026-01-17T15:18:59.162906",
+      "total_pdfs": 9,
+      "passed": 9,
+      "failed": 0,
+      "total_bugs": 0,
+      "new_bugs": 0,
+      "solved_bugs": 2,
+      "bug_types": {}
+    }
+  ],
+  "all_bugs": {},
+  "solved_bugs": [
+    {
+      "bug_id": "W2_2023__Redacted.pdf|EXTRACTION_ERROR|PDF|HTTPConnectionPool(host='127.0.0.1', port=8000): R",
+      "pdf": "W2_2023__Redacted.pdf",
+      "type": "EXTRACTION_ERROR",
+      "form_id": "PDF",
+      "message": "HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=120)",
+      "details": {},
+      "first_seen": "2026-01-17T15:01:04.563510",
+      "last_seen": "2026-01-17T15:01:04.563510",
+      "status": "SOLVED",
+      "solved_date": "2026-01-17T15:18:59.162906"
+    },
+    {
+      "bug_id": "W2_Interactive.pdf|EXTRACTION_ERROR|PDF|HTTPConnectionPool(host='127.0.0.1', port=8000): R",
+      "pdf": "W2_Interactive.pdf",
+      "type": "EXTRACTION_ERROR",
+      "form_id": "PDF",
+      "message": "HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=120)",
+      "details": {},
+      "first_seen": "2026-01-17T15:01:04.563510",
+      "last_seen": "2026-01-17T15:01:04.563510",
+      "status": "SOLVED",
+      "solved_date": "2026-01-17T15:18:59.162906"
+    }
+  ],
+  "active_bugs": [],
+  "all_bugs_list": [
+    {
+      "bug_id": "W2_2023__Redacted.pdf|EXTRACTION_ERROR|PDF|HTTPConnectionPool(host='127.0.0.1', port=8000): R",
+      "pdf": "W2_2023__Redacted.pdf",
+      "type": "EXTRACTION_ERROR",
+      "form_id": "PDF",
+      "message": "HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=120)",
+      "details": {},
+      "first_seen": "2026-01-17T15:01:04.563510",
+      "last_seen": "2026-01-17T15:01:04.563510",
+      "status": "SOLVED",
+      "solved_date": "2026-01-17T15:18:59.162906"
+    },
+    {
+      "bug_id": "W2_Interactive.pdf|EXTRACTION_ERROR|PDF|HTTPConnectionPool(host='127.0.0.1', port=8000): R",
+      "pdf": "W2_Interactive.pdf",
+      "type": "EXTRACTION_ERROR",
+      "form_id": "PDF",
+      "message": "HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=120)",
+      "details": {},
+      "first_seen": "2026-01-17T15:01:04.563510",
+      "last_seen": "2026-01-17T15:01:04.563510",
+      "status": "SOLVED",
+      "solved_date": "2026-01-17T15:18:59.162906"
+    }
+  ],
+  "last_updated": "2026-01-17T15:18:59.162906",
+  "summary": {
+    "total_bugs_ever": 2,
+    "currently_active": 0,
+    "total_solved": 2,
+    "bug_types_active": {}
+  }
+}

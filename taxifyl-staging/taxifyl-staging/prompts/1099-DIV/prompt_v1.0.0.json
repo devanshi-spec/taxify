@@ -1,0 +1,104 @@
+{
+  "formName": "Form 1099-DIV - Dividends and Distributions",
+  "systemPrompt": "Extract all data from Form 1099-DIV. 1. MULTI-INSTANCE EXTRACTION: If the document is a table or combined statement, extract each individual investment or account as a separate record. 2. CONDITIONAL TOTALS: If a 'TOTALS' or 'Summary Total' row is present, extract it as an additional record with 'Account Number' set to 'TOTALS'. 3. CONTACT MAPPING: Identify 'Questions?' or 'Support' numbers and map them strictly to the Payer (Financial Institution). 4. BOX EXTRACTION: Extract boxes 1 through 16. Use 0.00 for empty numeric fields. 5. DATA INTEGRITY: Maintain a strict 1:1 relationship between the Account Number and the dividend amounts for every record.",
+  "fields": [
+    {
+      "code": "is_corrected",
+      "label": "CORRECTED Checkbox Status"
+    },
+    {
+      "code": "payer_name_address_phone",
+      "label": "Payer's Name, Address, and Telephone"
+    },
+    {
+      "code": "payer_tin",
+      "label": "Payer's TIN"
+    },
+    {
+      "code": "recipient_tin",
+      "label": "Recipient's TIN"
+    },
+    {
+      "code": "recipient_name",
+      "label": "Recipient's Name"
+    },
+    {
+      "code": "recipient_address",
+      "label": "Recipient's Address (including Zip)"
+    },
+    {
+      "code": "account_number",
+      "label": "Account Number"
+    },
+    {
+      "code": "1a",
+      "label": "Total ordinary dividends"
+    },
+    {
+      "code": "1b",
+      "label": "Qualified dividends"
+    },
+    {
+      "code": "2a",
+      "label": "Total capital gain distr."
+    },
+    {
+      "code": "2b",
+      "label": "Unrecap. Sec. 1250 gain"
+    },
+    {
+      "code": "2c",
+      "label": "Section 1202 gain"
+    },
+    {
+      "code": "2d",
+      "label": "Collectibles (28%) gain"
+    },
+    {
+      "code": "3",
+      "label": "Nondividend distributions"
+    },
+    {
+      "code": "4",
+      "label": "Federal income tax withheld"
+    },
+    {
+      "code": "5",
+      "label": "Section 199A dividends"
+    },
+    {
+      "code": "6",
+      "label": "Investment expenses"
+    },
+    {
+      "code": "7",
+      "label": "Foreign tax paid"
+    },
+    {
+      "code": "8",
+      "label": "Foreign country or U.S. possession"
+    },
+    {
+      "code": "9",
+      "label": "Cash liquidation distributions"
+    },
+    {
+      "code": "10",
+      "label": "Noncash liquidation distributions"
+    },
+    {
+      "code": "11",
+      "label": "FATCA filing requirement"
+    },
+    {
+      "code": "12",
+      "label": "Exempt-interest dividends"
+    },
+    {
+      "code": "13",
+      "label": "Specified private activity bond interest dividends"
+    }
+  ],
+  "promptVersion": "1.0.0",
+  "lastUpdated": "2026-01-27"
+}

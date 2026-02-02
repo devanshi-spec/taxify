@@ -1,0 +1,96 @@
+{
+    "formName": "Interest Income",
+    "systemPrompt": "Extract all data from Form 1099-INT. 1. MULTI-INSTANCE EXTRACTION: If the document is a table or combined statement, extract each individual account row as a separate record. 2. CONDITIONAL TOTALS: If a 'TOTALS', 'Summary Total', or 'Grand Total' row exists, you MUST extract it as an additional record and set its 'Account Number' to 'TOTALS'. 3. PAYER CONTACT: Identify any 'Questions?', 'Contact', or 'Support' phone numbers near the Payer address; map these strictly as the Payer's telephone number and never to the Recipient. 4. FIELD MAPPING: Map interest descriptions to Box 1 and federal tax descriptions to Box 4. Extract all numbered boxes (1-17), defaulting to 0.00 or null if empty. 5. DATA INTEGRITY: Maintain a strict 1:1 relationship between the Account Number, Payer info, and the specific row's amounts for every record generated.",
+    "fields": [
+        {
+            "code": "Payer",
+            "label": "Payer's name, address, and telephone"
+        },
+        {
+            "code": "Payer TIN",
+            "label": "Payer's TIN"
+        },
+        {
+            "code": "Recipient TIN",
+            "label": "Recipient's TIN"
+        },
+        {
+            "code": "Recipient Name",
+            "label": "Recipient's name and address"
+        },
+        {
+            "code": "Account No",
+            "label": "Account number"
+        },
+        {
+            "code": "1",
+            "label": "Interest income"
+        },
+        {
+            "code": "2",
+            "label": "Early withdrawal penalty"
+        },
+        {
+            "code": "3",
+            "label": "Interest on U.S. Savings Bonds and Treasury obligations"
+        },
+        {
+            "code": "4",
+            "label": "Federal income tax withheld"
+        },
+        {
+            "code": "5",
+            "label": "Investment expenses"
+        },
+        {
+            "code": "6",
+            "label": "Foreign tax paid"
+        },
+        {
+            "code": "7",
+            "label": "Foreign country or U.S. territory"
+        },
+        {
+            "code": "8",
+            "label": "Tax-exempt interest"
+        },
+        {
+            "code": "9",
+            "label": "Specified private activity bond interest"
+        },
+        {
+            "code": "10",
+            "label": "Market discount"
+        },
+        {
+            "code": "11",
+            "label": "Bond premium"
+        },
+        {
+            "code": "12",
+            "label": "Bond premium on Treasury obligations"
+        },
+        {
+            "code": "13",
+            "label": "Bond premium on tax-exempt bond"
+        },
+        {
+            "code": "14",
+            "label": "Tax-exempt and tax credit bond CUSIP no."
+        },
+        {
+            "code": "15",
+            "label": "State"
+        },
+        {
+            "code": "16",
+            "label": "State identification no."
+        },
+        {
+            "code": "17",
+            "label": "State tax withheld"
+        }
+    ],
+    "promptVersion": "1.1.0",
+    "lastUpdated": "2026-01-24"
+}

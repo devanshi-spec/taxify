@@ -1,0 +1,88 @@
+{
+    "formName": "Form 1098 - Mortgage Interest Statement",
+    "systemPrompt": "Extract all data from Form 1098. 1. IDENTIFICATION: Identify the Recipient/Lender (typically a bank) and the Payer/Borrower (the individual). 2. CONTACT MAPPING: Extract full names and multi-line addresses. If a phone number is present in the Lender box, map it strictly as the 'lender_phone'. 3. BOX EXTRACTION: Extract all numbered boxes 1 through 11. If a box or checkbox (like Box 7) is empty, return null or 0.00. 4. ACCOUNT INFO: Capture the 'Account number' from the designated field. 5. MULTI-INSTANCE: If a summary table is present, extract each loan as a separate record and a 'TOTALS' record if applicable.",
+    "fields": [
+        {
+            "code": "is_void",
+            "label": "VOID Checkbox Status"
+        },
+        {
+            "code": "is_corrected",
+            "label": "CORRECTED Checkbox Status"
+        },
+        {
+            "code": "lender_name_address_phone",
+            "label": "Recipient/Lender Name, Address, and Phone"
+        },
+        {
+            "code": "lender_tin",
+            "label": "Recipient/Lender TIN"
+        },
+        {
+            "code": "borrower_tin",
+            "label": "Payer/Borrower TIN"
+        },
+        {
+            "code": "borrower_name",
+            "label": "Payer/Borrower Name"
+        },
+        {
+            "code": "borrower_street_address",
+            "label": "Payer/Borrower Street Address"
+        },
+        {
+            "code": "borrower_city_state_zip",
+            "label": "Payer/Borrower City, State, and Zip"
+        },
+        {
+            "code": "account_number",
+            "label": "Account Number"
+        },
+        {
+            "code": "1",
+            "label": "Mortgage interest received"
+        },
+        {
+            "code": "2",
+            "label": "Outstanding mortgage principal"
+        },
+        {
+            "code": "3",
+            "label": "Mortgage origination date"
+        },
+        {
+            "code": "4",
+            "label": "Refund of overpaid interest"
+        },
+        {
+            "code": "5",
+            "label": "Mortgage insurance premiums"
+        },
+        {
+            "code": "6",
+            "label": "Points paid on purchase"
+        },
+        {
+            "code": "7_checkbox",
+            "label": "Box 7 Checkbox (Address same as borrower)"
+        },
+        {
+            "code": "8",
+            "label": "Address or description of property"
+        },
+        {
+            "code": "9",
+            "label": "Number of mortgaged properties"
+        },
+        {
+            "code": "10",
+            "label": "Other"
+        },
+        {
+            "code": "11",
+            "label": "Mortgage acquisition date"
+        }
+    ],
+    "promptVersion": "1.1.0",
+    "lastUpdated": "2026-01-24"
+}

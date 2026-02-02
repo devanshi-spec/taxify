@@ -1,0 +1,177 @@
+{
+  "W-2": {
+    "current_version": "1.4.0",
+    "versions": [
+      {
+        "version": "1.0.0",
+        "date": "2026-01-17",
+        "author": "Initial",
+        "description": "First principle-based prompt replacing hardcoded rules",
+        "changes": [
+          "Replaced 10 hardcoded RULES with 7 flexible PRINCIPLES",
+          "Removed specific examples like 'RETIRE', 'FLI', 'D 23000.00'",
+          "Made prompt more maintainable and adaptable"
+        ],
+        "test_results": {
+          "passed": null,
+          "failed": null,
+          "notes": "Initial version before testing"
+        }
+      },
+      {
+        "version": "1.1.0",
+        "date": "2026-01-17",
+        "author": "Bug Fix",
+        "description": "Enhanced header field separation and value copying prevention",
+        "changes": [
+          "Added PRINCIPLE 3 - HEADER ROW FIELD LAYOUT with specific left-to-right layout",
+          "Added PRINCIPLE 4 - EMPTY FIELD HANDLING to prevent field merging",
+          "Added PRINCIPLE 5 - BOX 3/4 vs BOX 1/2 INDEPENDENCE",
+          "Added PRINCIPLE 7 - BOX 14 COPY-SPECIFIC CONTENT for state prefix handling",
+          "Emphasized keeping 'Employer use only' values together (e.g., 'T 13')",
+          "Explicitly stated not to merge Control number, Dept, Corp fields"
+        ],
+        "bugs_addressed": [
+          "Control number merging with Dept",
+          "Dept shifting into Corp",
+          "Employer use only truncation (showing '13' instead of 'T 13')",
+          "Box 3/4 copying from Box 1/2",
+          "Box 14 state prefix (CA) missing or incorrectly added"
+        ],
+        "test_results": {
+          "passed": 9,
+          "failed": 0,
+          "total_bugs": 0,
+          "solved_bugs": 2,
+          "last_tested": "2026-01-17T15:18:59.165547",
+          "notes": "Tested on 2026-01-17 15:18"
+        }
+      },
+      {
+        "version": "1.2.0",
+        "date": "2026-01-18",
+        "author": "Bug Fix",
+        "model": "gemini-2.5-pro",
+        "description": "Strengthened anti-copying rules and header column extraction",
+        "changes": [
+          "PRINCIPLE 3: Added explicit note that Box 3/4 may be empty even when Box 1/2 have values",
+          "PRINCIPLE 4: Added 'NO COPYING' to title, explicit rule that Box 1->Box 3 copying forbidden",
+          "PRINCIPLE 5: Rewritten as 'HEADER ROW d FIELD EXTRACTION' with column-by-column layout",
+          "PRINCIPLE 6: Added 'ANTI-COPYING RULE' with detailed Box 1-6 independence instructions",
+          "Added VALIDATION CHECKLIST section to verify extraction before output",
+          "Added 'copied from another box' to FAILURE STANDARD"
+        ],
+        "bugs_addressed": [
+          "Box 3 copying value from Box 1 when Box 3 is empty",
+          "Corp field extraction (separate column from Employer use only)",
+          "Employer use only should capture full value"
+        ],
+        "test_results": {
+          "passed": null,
+          "failed": null,
+          "notes": "Superseded by v1.2.1"
+        }
+      },
+      {
+        "version": "1.2.1",
+        "date": "2026-01-18",
+        "author": "Bug Fix",
+        "model": "gemini-2.5-pro",
+        "description": "Fixed Corp. incorrectly getting value from Employer use only",
+        "changes": [
+          "PRINCIPLE 5: Added rule - Do NOT split Employer use only content across Corp and Employer use only",
+          "PRINCIPLE 5: Added - If Corp column is visually empty, return null",
+          "VALIDATION CHECKLIST: Added check for Corp. being actually empty",
+          "VALIDATION CHECKLIST: Added check for Employer use only value completeness",
+          "FAILURE STANDARD: Added 'split across wrong fields' as invalid"
+        ],
+        "bugs_addressed": [
+          "Corp showing 'T' when it should be empty",
+          "Employer use only showing '13' instead of 'T 13'"
+        ],
+        "test_results": {
+          "passed": null,
+          "failed": null,
+          "notes": "Superseded by v1.3.0 - had hardcoded examples"
+        }
+      },
+      {
+        "version": "1.3.0",
+        "date": "2026-01-18",
+        "author": "Refactor",
+        "model": "gemini-2.5-pro",
+        "description": "Removed all hardcoded examples - fully dynamic prompt",
+        "changes": [
+          "Removed all hardcoded examples (T 13, Box 1, Box 3, etc.)",
+          "Made PRINCIPLE 5 generic - 'Column Isolation' works for any layout",
+          "Made PRINCIPLE 6 generic - applies to any box independence",
+          "Simplified VALIDATION CHECKLIST to generic questions",
+          "All principles now teach concepts not specific cases"
+        ],
+        "bugs_addressed": [
+          "Same bugs as v1.2.1 but with dynamic/flexible approach"
+        ],
+        "test_results": {
+          "passed": null,
+          "failed": null,
+          "notes": "Superseded by v1.3.1"
+        }
+      },
+      {
+        "version": "1.3.1",
+        "date": "2026-01-18",
+        "author": "Bug Fix",
+        "model": "gemini-2.5-pro",
+        "description": "Enhanced column boundary detection for header row d",
+        "changes": [
+          "PRINCIPLE 5: Added - Column boundaries defined by vertical lines",
+          "PRINCIPLE 5: Added - Rightmost column may contain multiple text elements",
+          "PRINCIPLE 5: Added - Narrow columns between dividers are often EMPTY",
+          "PRINCIPLE 5: Added - Do NOT distribute text from rightmost column to empty narrow columns",
+          "VALIDATION CHECKLIST: Added check for rightmost column text splitting"
+        ],
+        "bugs_addressed": [
+          "Corp. still getting 'T' split from Employer use only",
+          "Employer use only still showing only '13'"
+        ],
+        "test_results": {
+          "passed": null,
+          "failed": null,
+          "notes": "Superseded by v1.4.0"
+        }
+      },
+      {
+        "version": "1.4.0",
+        "date": "2026-01-18",
+        "author": "Production Release",
+        "model": "gemini-2.5-pro",
+        "description": "Production-ready prompt with comprehensive bug prevention",
+        "changes": [
+          "Added 'ZERO TOLERANCE' to PRINCIPLE 3 and 4",
+          "Expanded VALIDATION CHECKLIST from 4 to 7 comprehensive checks",
+          "Added specific validation for: copied values, empty regions, header row d, Box 1-6, Box 12, Box 14, multi-form",
+          "Strengthened FAILURE STANDARD with 'EXTRACTION REJECTED IF ANY OCCUR'",
+          "Enhanced PRINCIPLE 7 for Box 12 slot integrity",
+          "Enhanced PRINCIPLE 8 for Box 14 - no state codes or prefixes",
+          "Enhanced PRINCIPLE 9 for multi-form isolation",
+          "All principles remain dynamic with no hardcoded examples"
+        ],
+        "bugs_addressed": [
+          "Box 3/4 copying from Box 1/2",
+          "Corp. getting value from Employer use only",
+          "Employer use only value splitting",
+          "Control number merging with Dept",
+          "Box 12 value shifting",
+          "Box 14 state prefix issues",
+          "Multi-form text borrowing",
+          "Footer/instruction text in boxes"
+        ],
+        "test_results": {
+          "passed": null,
+          "failed": null,
+          "notes": "Ready for tester validation"
+        }
+      }
+    ]
+  }
+}

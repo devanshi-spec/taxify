@@ -1,0 +1,5113 @@
+{
+  "timestamp": "2026-01-17T15:01:04.563510",
+  "total_pdfs": 9,
+  "passed": 7,
+  "failed": 2,
+  "bug_statistics": {
+    "EXTRACTION_ERROR": 2
+  },
+  "results": [
+    {
+      "pdf": "2-1-2.pdf",
+      "status": "PASS",
+      "forms_extracted": 5,
+      "pages_processed": 2,
+      "bugs": [],
+      "warnings": [],
+      "extraction_data": {
+        "detection": {
+          "status": 200,
+          "success": true,
+          "message": "Detection complete and pages stored.",
+          "data": {
+            "pages": [
+              {
+                "pageUrl": "https://vzmcpfeyhmsxgxfoxkxj.supabase.co/storage/v1/object/public/page-images/71546d3f-0d07-4382-9d68-be00a42659b5_p1.png",
+                "pageNumber": 1,
+                "numberOfForms": 4,
+                "detectedTypes": [
+                  "W-2"
+                ]
+              },
+              {
+                "pageUrl": "https://vzmcpfeyhmsxgxfoxkxj.supabase.co/storage/v1/object/public/page-images/71546d3f-0d07-4382-9d68-be00a42659b5_p2.png",
+                "pageNumber": 2,
+                "numberOfForms": 1,
+                "detectedTypes": [
+                  "W-2"
+                ]
+              }
+            ]
+          }
+        },
+        "extractions": [
+          {
+            "page": 1,
+            "result": {
+              "status": 200,
+              "success": true,
+              "message": "Successfully extracted 4 W-2 form(s) using gemini-2.5-flash.",
+              "data": {
+                "extractedForms": [
+                  {
+                    "formName": "W-2",
+                    "formYear": "2022",
+                    "copy": "Employee Reference Copy",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": "590-12-6140"
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": "61-1273583"
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": "CHC PAYROLL AGENT, INC AGENT FOR LARGO MEDICAL CENTER,INC HCA FL LARGO HOSPITAL PO BOX 292169 NASHVILLE, TN 37229-2169"
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": null
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": "62-1026428"
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": "LUCY J ECK"
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": "938 CELTIC CIR TARPON SPRINGS, FL 34689-2650"
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 6302.5
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 398.52
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 6597.72
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 409.06
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 6597.72
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 95.67
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": {
+                          "code": "C",
+                          "amount": 63.12
+                        }
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": {
+                          "code": "D",
+                          "amount": 295.22
+                        }
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": {
+                          "code": "DD",
+                          "amount": 3495.24
+                        }
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": null
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": null
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": null
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": null
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "W-2",
+                    "formYear": "2022",
+                    "copy": "Federal Filing Copy",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": "590-12-6140"
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": "61-1273583"
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": "CHC PAYROLL AGENT, INC AGENT FOR LARGO MEDICAL CENTER,INC HCA FL LARGO HOSPITAL PO BOX 292169 NASHVILLE, TN 37229-2169"
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": null
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": "62-1026428"
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": "LUCY J ECK"
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": "938 CELTIC CIR TARPON SPRINGS, FL 34689-2650"
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 6302.5
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 398.52
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 6597.72
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 409.06
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 6597.72
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 95.67
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": {
+                          "code": "C",
+                          "amount": 63.12
+                        }
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": {
+                          "code": "D",
+                          "amount": 295.22
+                        }
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": {
+                          "code": "DD",
+                          "amount": 3495.24
+                        }
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": null
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": null
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": null
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": null
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "W-2",
+                    "formYear": "2022",
+                    "copy": "State Filing Copy",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": "590-12-6140"
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": "61-1273583"
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": "CHC PAYROLL AGENT, INC AGENT FOR LARGO MEDICAL CENTER,INC HCA FL LARGO HOSPITAL PO BOX 292169 NASHVILLE, TN 37229-2169"
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": null
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": "62-1026428"
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": "LUCY J ECK"
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": "938 CELTIC CIR TARPON SPRINGS, FL 34689-2650"
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 6302.5
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 398.52
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 6597.72
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 409.06
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 6597.72
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 95.67
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": {
+                          "code": "C",
+                          "amount": 63.12
+                        }
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": {
+                          "code": "D",
+                          "amount": 295.22
+                        }
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": {
+                          "code": "DD",
+                          "amount": 3495.24
+                        }
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": null
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": null
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": null
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": null
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "W-2",
+                    "formYear": "2022",
+                    "copy": "City or Local Filing Copy",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": "590-12-6140"
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": "61-1273583"
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": "CHC PAYROLL AGENT, INC AGENT FOR LARGO MEDICAL CENTER,INC HCA FL LARGO HOSPITAL PO BOX 292169 NASHVILLE, TN 37229-2169"
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": null
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": "62-1026428"
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": "LUCY J ECK"
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": "938 CELTIC CIR TARPON SPRINGS, FL 34689-2650"
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 6302.5
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 398.52
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 6597.72
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 409.06
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 6597.72
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 95.67
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": {
+                          "code": "C",
+                          "amount": 63.12
+                        }
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": {
+                          "code": "D",
+                          "amount": 295.22
+                        }
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": {
+                          "code": "DD",
+                          "amount": 3495.24
+                        }
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": null
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": null
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": null
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": null
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "page": 2,
+            "result": {
+              "status": 200,
+              "success": true,
+              "message": "Successfully extracted 1 W-2 form(s) using gemini-2.5-flash.",
+              "data": {
+                "extractedForms": [
+                  {
+                    "formName": "W-2 Wage and Tax Statement",
+                    "formYear": "2022",
+                    "copy": "Copy B - To Be Filed With Employee's FEDERAL Tax Return.",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": null
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": null
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": null
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 65500.06
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 5383.5
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 67550.11
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 4188.11
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 67550.11
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 979.48
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": {
+                          "code": "C",
+                          "amount": 54.18
+                        }
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": {
+                          "code": "D",
+                          "amount": 2050.05
+                        }
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": {
+                          "code": "DD",
+                          "amount": 15131.05
+                        }
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": null
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": null
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": null
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": null
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "error": null
+      }
+    },
+    {
+      "pdf": "2024 W2.pdf",
+      "status": "PASS",
+      "forms_extracted": 4,
+      "pages_processed": 1,
+      "bugs": [],
+      "warnings": [
+        "Page 1, Form 1: Employer use only '62971' may be truncated (missing prefix?)",
+        "Page 1, Form 2: Employer use only '62971' may be truncated (missing prefix?)",
+        "Page 1, Form 3: Employer use only '62971' may be truncated (missing prefix?)",
+        "Page 1, Form 4: Employer use only '62971' may be truncated (missing prefix?)"
+      ],
+      "extraction_data": {
+        "detection": {
+          "status": 200,
+          "success": true,
+          "message": "Detection complete and pages stored.",
+          "data": {
+            "pages": [
+              {
+                "pageUrl": "https://vzmcpfeyhmsxgxfoxkxj.supabase.co/storage/v1/object/public/page-images/5b8a3fef-54b5-4a0a-bae0-0f128141e12f_p1.png",
+                "pageNumber": 1,
+                "numberOfForms": 4,
+                "detectedTypes": [
+                  "W-2",
+                  "W-2",
+                  "W-2",
+                  "W-2"
+                ]
+              }
+            ]
+          }
+        },
+        "extractions": [
+          {
+            "page": 1,
+            "result": {
+              "status": 200,
+              "success": true,
+              "message": "Successfully extracted 4 W-2 form(s) using gemini-2.5-flash.",
+              "data": {
+                "extractedForms": [
+                  {
+                    "formName": "W-2",
+                    "formYear": "2024",
+                    "copy": "Copy C for employee's records",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": "XXX-XX-6501"
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": "91-1144442"
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": "MICROSOFT CORPORATION 1 MICROSOFT WAY REDMOND, WA 98052-6399"
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": "0000061733 V49"
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": "10U1"
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": "62971"
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": "EDWARD S GOMES"
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": "966 LAGUNA DR COPPELL, TX 75019"
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 359280.35
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 73404.94
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 168600.0
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 10453.2
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 389780.35
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 7359.84
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": "C 1348.72"
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": "D 30500.00"
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": "W 7700.00"
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": "DD 21888.00"
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": null
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": null
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": null
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": null
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "W-2",
+                    "formYear": "2024",
+                    "copy": "Copy B to be filed with employee's Federal Income Tax Return.",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": "XXX-XX-6501"
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": "91-1144442"
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": "MICROSOFT CORPORATION 1 MICROSOFT WAY REDMOND, WA 98052-6399"
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": "0000061733 V49"
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": "10U1"
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": "62971"
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": "EDWARD S GOMES"
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": "966 LAGUNA DR COPPELL, TX 75019"
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 359280.35
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 73404.94
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 168600.0
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 10453.2
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 389780.35
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 7359.84
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": "C 1348.72"
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": "D 30500.00"
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": "W 7700.00"
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": "DD 21888.00"
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": null
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": null
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": null
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": null
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "W-2",
+                    "formYear": "2024",
+                    "copy": "Copy 2 to be filed with employee's State Income Tax Return.",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": "XXX-XX-6501"
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": "91-1144442"
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": "MICROSOFT CORPORATION 1 MICROSOFT WAY REDMOND, WA 98052-6399"
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": "0000061733 V49"
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": "10U1"
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": "62971"
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": "EDWARD S GOMES"
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": "966 LAGUNA DR COPPELL, TX 75019"
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 359280.35
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 73404.94
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 168600.0
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 10453.2
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 389780.35
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 7359.84
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": "C 1348.72"
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": "D 30500.00"
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": "W 7700.00"
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": "DD 21888.00"
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": null
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": null
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": null
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": null
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "W-2",
+                    "formYear": "2024",
+                    "copy": "Copy 2 to be filed with employee's City or Local Income Tax Return.",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": "XXX-XX-6501"
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": "91-1144442"
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": "MICROSOFT CORPORATION 1 MICROSOFT WAY REDMOND, WA 98052-6399"
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": "0000061733 V49"
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": "10U1"
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": "62971"
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": "EDWARD S GOMES"
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": "966 LAGUNA DR COPPELL, TX 75019"
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 359280.35
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 73404.94
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 168600.0
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 10453.2
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 389780.35
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 7359.84
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": "C 1348.72"
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": "D 30500.00"
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": "W 7700.00"
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": "DD 21888.00"
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": null
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": null
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": null
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": null
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "error": null
+      }
+    },
+    {
+      "pdf": "2024 W2__Redacted.pdf",
+      "status": "PASS",
+      "forms_extracted": 4,
+      "pages_processed": 1,
+      "bugs": [],
+      "warnings": [],
+      "extraction_data": {
+        "detection": {
+          "status": 200,
+          "success": true,
+          "message": "Detection complete and pages stored.",
+          "data": {
+            "pages": [
+              {
+                "pageUrl": "https://vzmcpfeyhmsxgxfoxkxj.supabase.co/storage/v1/object/public/page-images/2b056212-7e7d-473d-98c0-21debc4b92d9_p1.png",
+                "pageNumber": 1,
+                "numberOfForms": 4,
+                "detectedTypes": [
+                  "W-2",
+                  "W-2",
+                  "W-2",
+                  "W-2"
+                ]
+              }
+            ]
+          }
+        },
+        "extractions": [
+          {
+            "page": 1,
+            "result": {
+              "status": 200,
+              "success": true,
+              "message": "Successfully extracted 4 W-2 form(s) using gemini-2.5-flash.",
+              "data": {
+                "extractedForms": [
+                  {
+                    "formName": "Form W-2 Wage and Tax Statement",
+                    "formYear": "2024",
+                    "copy": "Copy B To Be Filed With Employee's FEDERAL Tax Return",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": null
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": "147173 FT001"
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": null
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 322808.79
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 72224.37
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 168600.0
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 10453.19
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 345808.79
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 6326.52
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": {
+                          "code": "D",
+                          "amount": 23000.0
+                        }
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": {
+                          "code": "DD",
+                          "amount": 5791.24
+                        }
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": "CASDI-E 3550.92"
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": "CA 168-3280-0"
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": 322808.79
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": 24823.73
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "Form W-2 Wage and Tax Statement",
+                    "formYear": "2024",
+                    "copy": "Copy C For EMPLOYEE'S RECORDS (See Notice to Employee on back of Copy B.)",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": null
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": "147173 FT001"
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": null
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 322808.79
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 72224.37
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 168600.0
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 10453.19
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 345808.79
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 6326.52
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": {
+                          "code": "D",
+                          "amount": 23000.0
+                        }
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": {
+                          "code": "DD",
+                          "amount": 5791.24
+                        }
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": "CASDI-E 3550.92"
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": "CA 168-3280-0"
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": 322808.79
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": 24823.73
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "Form W-2 Wage and Tax Statement",
+                    "formYear": "2024",
+                    "copy": "Copy 1 To Be Filed With Employee's State, City, or Local Income Tax Return",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": null
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": "147173 FT001"
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": null
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 322808.79
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 72224.37
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 168600.0
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 10453.19
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 345808.79
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 6326.52
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": {
+                          "code": "D",
+                          "amount": 23000.0
+                        }
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": {
+                          "code": "DD",
+                          "amount": 5791.24
+                        }
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": "CASDI-E 3550.92"
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": "CA 168-3280-0"
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": 322808.79
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": 24823.73
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "Form W-2 Wage and Tax Statement",
+                    "formYear": "2024",
+                    "copy": "Copy 2 To Be Filed With Employee's State, City, or Local Income Tax Return",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": null
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": "147173 FT001"
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": null
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 322808.79
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 72224.37
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 168600.0
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 10453.19
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 345808.79
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 6326.52
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": {
+                          "code": "D",
+                          "amount": 23000.0
+                        }
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": {
+                          "code": "DD",
+                          "amount": 5791.24
+                        }
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": "CASDI-E 3550.92"
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": "CA 168-3280-0"
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": 322808.79
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": 24823.73
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "error": null
+      }
+    },
+    {
+      "pdf": "3.pdf",
+      "status": "PASS",
+      "forms_extracted": 1,
+      "pages_processed": 1,
+      "bugs": [],
+      "warnings": [],
+      "extraction_data": {
+        "detection": {
+          "status": 200,
+          "success": true,
+          "message": "Detection complete and pages stored.",
+          "data": {
+            "pages": [
+              {
+                "pageUrl": "https://vzmcpfeyhmsxgxfoxkxj.supabase.co/storage/v1/object/public/page-images/eace4a1f-2f8a-4b02-be89-6492702bea48_p1.png",
+                "pageNumber": 1,
+                "numberOfForms": 1,
+                "detectedTypes": [
+                  "W-2"
+                ]
+              }
+            ]
+          }
+        },
+        "extractions": [
+          {
+            "page": 1,
+            "result": {
+              "status": 200,
+              "success": true,
+              "message": "Successfully extracted 1 W-2 form(s) using gemini-2.5-flash.",
+              "data": {
+                "extractedForms": [
+                  {
+                    "formName": "W-2",
+                    "formYear": "2024",
+                    "copy": "Copy C for employee's records.",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": "XXX-XX-4911"
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": null
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": null
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": "A"
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": null
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 409859.12
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 90438.15
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 168600.0
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 10453.2
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 432859.12
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 8372.19
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": "D 23000.00"
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": "DD 18056.74"
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": null
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": "FL"
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": null
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": null
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "error": null
+      }
+    },
+    {
+      "pdf": "4.pdf",
+      "status": "PASS",
+      "forms_extracted": 4,
+      "pages_processed": 1,
+      "bugs": [],
+      "warnings": [],
+      "extraction_data": {
+        "detection": {
+          "status": 200,
+          "success": true,
+          "message": "Detection complete and pages stored.",
+          "data": {
+            "pages": [
+              {
+                "pageUrl": "https://vzmcpfeyhmsxgxfoxkxj.supabase.co/storage/v1/object/public/page-images/71b17475-d038-4b37-85f7-cf32674b1706_p1.png",
+                "pageNumber": 1,
+                "numberOfForms": 4,
+                "detectedTypes": [
+                  "W-2",
+                  "W-2",
+                  "W-2",
+                  "W-2"
+                ]
+              }
+            ]
+          }
+        },
+        "extractions": [
+          {
+            "page": 1,
+            "result": {
+              "status": 200,
+              "success": true,
+              "message": "Successfully extracted 4 W-2 form(s) using gemini-2.5-flash.",
+              "data": {
+                "extractedForms": [
+                  {
+                    "formName": "W-2 Wage and Tax Statement",
+                    "formYear": "2024",
+                    "copy": "Copy B - To Be Filed With Employee's FEDERAL Tax Return",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": null
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": null
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": null
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 42513.18
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 5405.86
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 45566.35
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 2825.11
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 45566.35
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 660.71
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": {
+                          "code": "AA",
+                          "amount": 2035.45
+                        }
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": {
+                          "code": "D",
+                          "amount": 3053.17
+                        }
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": {
+                          "code": "DD",
+                          "amount": 14448.32
+                        }
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": null
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": null
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": null
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": null
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "W-2 Wage and Tax Statement",
+                    "formYear": "2024",
+                    "copy": "Copy C - For EMPLOYEE'S RECORDS",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": null
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": null
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": null
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 42513.18
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 5405.86
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 45566.35
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 2825.11
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 45566.35
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 660.71
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": {
+                          "code": "AA",
+                          "amount": 2035.45
+                        }
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": {
+                          "code": "D",
+                          "amount": 3053.17
+                        }
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": {
+                          "code": "DD",
+                          "amount": 14448.32
+                        }
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": null
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": null
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": null
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": null
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "W-2 Wage and Tax Statement",
+                    "formYear": "2024",
+                    "copy": "Copy 1 - To Be Filed With Employee's State City or Local Income Tax Return",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": null
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": null
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": null
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 42513.18
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 5405.86
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 45566.35
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 2825.11
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 45566.35
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 660.71
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": {
+                          "code": "AA",
+                          "amount": 2035.45
+                        }
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": {
+                          "code": "D",
+                          "amount": 3053.17
+                        }
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": {
+                          "code": "DD",
+                          "amount": 14448.32
+                        }
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": null
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": null
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": null
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": null
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "W-2 Wage and Tax Statement",
+                    "formYear": "2024",
+                    "copy": "Copy 2 - To Be Filed With Employee's State City or Local Income Tax Return",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": null
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": null
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": null
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 42513.18
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 5405.86
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 45566.35
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 2825.11
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 45566.35
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 660.71
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": {
+                          "code": "AA",
+                          "amount": 2035.45
+                        }
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": {
+                          "code": "D",
+                          "amount": 3053.17
+                        }
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": {
+                          "code": "DD",
+                          "amount": 14448.32
+                        }
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": null
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": null
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": null
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": null
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "error": null
+      }
+    },
+    {
+      "pdf": "5.pdf",
+      "status": "PASS",
+      "forms_extracted": 4,
+      "pages_processed": 1,
+      "bugs": [],
+      "warnings": [],
+      "extraction_data": {
+        "detection": {
+          "status": 200,
+          "success": true,
+          "message": "Detection complete and pages stored.",
+          "data": {
+            "pages": [
+              {
+                "pageUrl": "https://vzmcpfeyhmsxgxfoxkxj.supabase.co/storage/v1/object/public/page-images/205956ed-685c-439c-bb09-f7ea8b3f0ed1_p1.png",
+                "pageNumber": 1,
+                "numberOfForms": 4,
+                "detectedTypes": [
+                  "W-2"
+                ]
+              }
+            ]
+          }
+        },
+        "extractions": [
+          {
+            "page": 1,
+            "result": {
+              "status": 200,
+              "success": true,
+              "message": "Successfully extracted 4 W-2 form(s) using gemini-2.5-flash.",
+              "data": {
+                "extractedForms": [
+                  {
+                    "formName": "W-2 Wage and Tax Statement",
+                    "formYear": "2024",
+                    "copy": "Copy B To Be Filed With Employee's FEDERAL Tax Return",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": null
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": null
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": null
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 71326.36
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 3548.95
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 71326.36
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": null
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 71326.36
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 1034.23
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": "RETIRE 8141.60"
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": "MA"
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": 79467.96
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": 3553.42
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "W-2 Wage and Tax Statement",
+                    "formYear": "2024",
+                    "copy": "Copy C For EMPLOYEE'S RECORDS (See Notice to Employee on back of Copy B.)",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": "047-13-7564"
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": "04-6001380"
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": null
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": null
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": null
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 71326.36
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 3548.95
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 71326.36
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": null
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 71326.36
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 1034.23
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": "RETIRE 8141.60"
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": "MA 046001380"
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": 79467.96
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": 3553.42
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "W-2 Wage and Tax Statement",
+                    "formYear": "2024",
+                    "copy": "Copy 2 To Be Filed With Employee's State, City, or Local Income Tax Return",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": null
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": null
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": null
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 71326.36
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 3548.95
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 71326.36
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": null
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 71326.36
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 1034.23
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": "RETIRE 8141.60"
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": "MA"
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": 79467.96
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": 3553.42
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "W-2 Wage and Tax Statement",
+                    "formYear": "2024",
+                    "copy": "Copy 2 To Be Filed With Employee's State, City, or Local Income Tax Return",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": null
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": null
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": null
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": null
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": null
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": null
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 71326.36
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 3548.95
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 71326.36
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": null
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 71326.36
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 1034.23
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": null
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": "RETIRE 8141.60"
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": "MA"
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": 79467.96
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": 3553.42
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "error": null
+      }
+    },
+    {
+      "pdf": "W2_2023__Redacted.pdf",
+      "status": "FAIL",
+      "forms_extracted": 0,
+      "pages_processed": 0,
+      "bugs": [
+        {
+          "type": "EXTRACTION_ERROR",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=120)",
+          "form_id": "PDF",
+          "details": {}
+        }
+      ],
+      "warnings": [],
+      "extraction_data": {
+        "detection": {
+          "status": 200,
+          "success": true,
+          "message": "Detection complete and pages stored.",
+          "data": {
+            "pages": [
+              {
+                "pageUrl": "https://vzmcpfeyhmsxgxfoxkxj.supabase.co/storage/v1/object/public/page-images/3aefbdba-8ef0-4733-b160-60cbc65bc924_p1.png",
+                "pageNumber": 1,
+                "numberOfForms": 4,
+                "detectedTypes": [
+                  "W-2",
+                  "W-2",
+                  "W-2",
+                  "W-2"
+                ]
+              }
+            ]
+          }
+        },
+        "extractions": [],
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=120)"
+      }
+    },
+    {
+      "pdf": "W2_Interactive.pdf",
+      "status": "FAIL",
+      "forms_extracted": 0,
+      "pages_processed": 0,
+      "bugs": [
+        {
+          "type": "EXTRACTION_ERROR",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=120)",
+          "form_id": "PDF",
+          "details": {}
+        }
+      ],
+      "warnings": [],
+      "extraction_data": {
+        "detection": null,
+        "extractions": [],
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=120)"
+      }
+    },
+    {
+      "pdf": "W2_Jobcase_2023_Redacted.pdf",
+      "status": "PASS",
+      "forms_extracted": 4,
+      "pages_processed": 1,
+      "bugs": [],
+      "warnings": [
+        "Page 1, Form 1: Employer use only '13' may be truncated (missing prefix?)",
+        "Page 1, Form 2: Employer use only '13' may be truncated (missing prefix?)",
+        "Page 1, Form 3: Employer use only '13' may be truncated (missing prefix?)",
+        "Page 1, Form 4: Employer use only '13' may be truncated (missing prefix?)"
+      ],
+      "extraction_data": {
+        "detection": {
+          "status": 200,
+          "success": true,
+          "message": "Detection complete and pages stored.",
+          "data": {
+            "pages": [
+              {
+                "pageUrl": "https://vzmcpfeyhmsxgxfoxkxj.supabase.co/storage/v1/object/public/page-images/5ce95aba-2223-4f06-82a9-05290d775050_p1.png",
+                "pageNumber": 1,
+                "numberOfForms": 4,
+                "detectedTypes": [
+                  "W-2",
+                  "W-2",
+                  "W-2",
+                  "W-2"
+                ]
+              }
+            ]
+          }
+        },
+        "extractions": [
+          {
+            "page": 1,
+            "result": {
+              "status": 200,
+              "success": true,
+              "message": "Successfully extracted 4 W-2 form(s) using gemini-2.5-flash.",
+              "data": {
+                "extractedForms": [
+                  {
+                    "formName": "W-2",
+                    "formYear": "2023",
+                    "copy": "Employee Reference Copy",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": "XXX-XX-2391"
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": "[Redacted]"
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": "[Redacted]"
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": "000580"
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": "CLIF/3FW"
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": "09ENGI"
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": "13"
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": "[Redacted]"
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": "[Redacted]"
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 33318.82
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 3147.14
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 33829.24
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 2097.41
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 33829.24
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 490.52
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": 416.66
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": "C 6.23"
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": "D 510.42"
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": "W 250.00"
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": "306.66 SDI 24.92 DISAB"
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": "CA 069-7574 2"
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": 33568.82
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": 2527.4
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "W-2",
+                    "formYear": "2023",
+                    "copy": "Federal Filing Copy",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": "XXX-XX-2391"
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": "[Redacted]"
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": "[Redacted]"
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": "000580"
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": "CLIF/3FW"
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": "09ENGI"
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": "13"
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": "[Redacted]"
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": "[Redacted]"
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 33318.82
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 3147.14
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 33829.24
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 2097.41
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 33829.24
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 490.52
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": 416.66
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": "C 6.23"
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": "D 510.42"
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": "W 250.00"
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": "306.66 SDI 24.92 DISAB"
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": "CA 069-7574 2"
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": 33568.82
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": 2527.4
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "W-2",
+                    "formYear": "2023",
+                    "copy": "CA.State Reference Copy",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": "XXX-XX-2391"
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": "[Redacted]"
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": "[Redacted]"
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": "000580"
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": "CLIF/3FW"
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": "09ENGI"
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": "13"
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": "[Redacted]"
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": "[Redacted]"
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 33318.82
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 3147.14
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 33829.24
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 2097.41
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 33829.24
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 490.52
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": 416.66
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": "C 6.23"
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": "D 510.42"
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": "W 250.00"
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": "306.66 SDI 24.92 DISAB"
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": "CA 069-7574 2"
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": 33568.82
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": 2527.4
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  },
+                  {
+                    "formName": "W-2",
+                    "formYear": "2023",
+                    "copy": "CA.State Filing Copy",
+                    "boxDetails": [
+                      {
+                        "label": "Employee's SSA number",
+                        "code": "a",
+                        "value": "XXX-XX-2391"
+                      },
+                      {
+                        "label": "Employer identification number (EIN)",
+                        "code": "b",
+                        "value": "[Redacted]"
+                      },
+                      {
+                        "label": "Employer's name, address, and ZIP code",
+                        "code": "c",
+                        "value": "[Redacted]"
+                      },
+                      {
+                        "label": "Control number",
+                        "code": "d",
+                        "value": "000580"
+                      },
+                      {
+                        "label": "Dept.",
+                        "code": "dept",
+                        "value": "CLIF/3FW"
+                      },
+                      {
+                        "label": "Corp.",
+                        "code": "corp",
+                        "value": "09ENGI"
+                      },
+                      {
+                        "label": "Employer use only",
+                        "code": "employer_use_only",
+                        "value": "13"
+                      },
+                      {
+                        "label": "Employee's first name and initial",
+                        "code": "e",
+                        "value": "[Redacted]"
+                      },
+                      {
+                        "label": "Employee's address and ZIP code",
+                        "code": "f",
+                        "value": "[Redacted]"
+                      },
+                      {
+                        "label": "Wages, tips, other compensation",
+                        "code": "1",
+                        "value": 33318.82
+                      },
+                      {
+                        "label": "Federal income tax withheld",
+                        "code": "2",
+                        "value": 3147.14
+                      },
+                      {
+                        "label": "Social security wages",
+                        "code": "3",
+                        "value": 33829.24
+                      },
+                      {
+                        "label": "Social security tax withheld",
+                        "code": "4",
+                        "value": 2097.41
+                      },
+                      {
+                        "label": "Medicare wages and tips",
+                        "code": "5",
+                        "value": 33829.24
+                      },
+                      {
+                        "label": "Medicare tax withheld",
+                        "code": "6",
+                        "value": 490.52
+                      },
+                      {
+                        "label": "Social security tips",
+                        "code": "7",
+                        "value": null
+                      },
+                      {
+                        "label": "Allocated tips",
+                        "code": "8",
+                        "value": null
+                      },
+                      {
+                        "label": "Verification code",
+                        "code": "9",
+                        "value": null
+                      },
+                      {
+                        "label": "Dependent care benefits",
+                        "code": "10",
+                        "value": 416.66
+                      },
+                      {
+                        "label": "Nonqualified plans",
+                        "code": "11",
+                        "value": null
+                      },
+                      {
+                        "label": "Box 12a Code/Amount",
+                        "code": "12a",
+                        "value": "C 6.23"
+                      },
+                      {
+                        "label": "Box 12b Code/Amount",
+                        "code": "12b",
+                        "value": "D 510.42"
+                      },
+                      {
+                        "label": "Box 12c Code/Amount",
+                        "code": "12c",
+                        "value": "W 250.00"
+                      },
+                      {
+                        "label": "Box 12d Code/Amount",
+                        "code": "12d",
+                        "value": null
+                      },
+                      {
+                        "label": "Statutory employee",
+                        "code": "13_statutory",
+                        "value": false
+                      },
+                      {
+                        "label": "Retirement plan",
+                        "code": "13_retirement",
+                        "value": true
+                      },
+                      {
+                        "label": "Third-party sick pay",
+                        "code": "13_sick_pay",
+                        "value": false
+                      },
+                      {
+                        "label": "Other",
+                        "code": "14",
+                        "value": "306.66 SDI 24.92 DISAB"
+                      },
+                      {
+                        "label": "State / Employer's state ID number",
+                        "code": "15",
+                        "value": "CA 069-7574 2"
+                      },
+                      {
+                        "label": "State wages, tips, etc.",
+                        "code": "16",
+                        "value": 33568.82
+                      },
+                      {
+                        "label": "State income tax",
+                        "code": "17",
+                        "value": 2527.4
+                      },
+                      {
+                        "label": "Local wages, tips, etc.",
+                        "code": "18",
+                        "value": null
+                      },
+                      {
+                        "label": "Local income tax",
+                        "code": "19",
+                        "value": null
+                      },
+                      {
+                        "label": "Locality name",
+                        "code": "20",
+                        "value": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "error": null
+      }
+    }
+  ]
+}
